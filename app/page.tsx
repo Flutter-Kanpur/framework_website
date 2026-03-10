@@ -40,7 +40,7 @@ export default function Home() {
       <SponsorsSection />
       <NetworkingSection />
       <LocationSection />
-      <RegisterForm />
+      {/* <RegisterForm /> */}
 
       {/* CTA 3: Before footer */}
       <CTABanner
