@@ -15,7 +15,7 @@ export default function Home() {
     <main>
       <HeroSection />
       <FrameworkScrollSection />
-      <SpeakersSection />
+      {/* <SpeakersSection /> */}
 
       {/* CTA 1: After speakers */}
       <CTABanner
@@ -25,8 +25,10 @@ export default function Home() {
         buttonText="Register Now →"
       />
 
+      {/* about section to be added here */}
+
       <TracksSection />
-      <ScheduleSection />
+      {/* <ScheduleSection /> */}
 
       {/* CTA 2: After schedule */}
       <CTABanner
@@ -43,12 +45,12 @@ export default function Home() {
       {/* <RegisterForm /> */}
 
       {/* CTA 3: Before footer */}
-      <CTABanner
+      {/* <CTABanner
         variant="outline"
         heading="Don't Miss Out"
         subtext="Limited seats available. Early bird registration closes soon."
         buttonText="Grab Your Spot"
-      />
+      /> */}
 
       <Footer />
     </main>

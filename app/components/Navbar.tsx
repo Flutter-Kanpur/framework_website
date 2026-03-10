@@ -6,15 +6,19 @@ import Link from "next/link";
 import Image from "next/image";
 
 const leftLinks = [
-  { name: "Speaker", href: "/#speakers" },
+  // { name: "Speaker", href: "/#speakers" },
+  { name: "About", href: "/#about" },
   { name: "Track", href: "/#tracks" },
-  { name: "Schedule", href: "/#schedule" },
+  { name: "Sponsor", href: "/#sponsors" },
+
+  // { name: "Schedule", href: "/#schedule" },
 ];
 
 const rightLinks = [
-  { name: "Sponsor", href: "/#sponsors" },
+  // { name: "Sponsor", href: "/#sponsors" },
   { name: "Partner", href: "/#partners" },
   { name: "Hackathon", href: "/#hackathon" },
+  // { name: "Support Us", href: "/#supportus" },
   //   { name: "Networking", href: "/#networking" },
 ];
 
@@ -96,7 +100,7 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#4167F2] group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
-            {/* <Link
+            <Link
               href="#register"
               className="ml-2 px-5 py-2 text-sm font-medium text-white rounded-full transition-all duration-300 hover:shadow-[0_0_25px_rgba(65,103,242,0.5)]"
               style={{
@@ -104,8 +108,8 @@ export default function Navbar() {
                 fontFamily: "var(--font-inter)",
               }}
             >
-              Register Now
-            </Link> */}
+              Support Us
+            </Link>
           </div>
 
           {/* Mobile Hamburger */}

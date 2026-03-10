@@ -8,10 +8,11 @@ const footerLinks = [
   {
     title: "Event",
     links: [
-      { name: "Speakers", href: "/#speakers" },
+      // { name: "Speakers", href: "/#speakers" },
       { name: "Tracks", href: "/#tracks" },
-      { name: "Schedule", href: "/#schedule" },
+      // { name: "Schedule", href: "/#schedule" },
       { name: "Sponsors", href: "/#sponsors" },
+      { name: "About", href: "/#about" },
     ],
   },
   {
