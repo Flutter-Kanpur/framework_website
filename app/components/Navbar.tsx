@@ -101,7 +101,7 @@ export default function Navbar() {
               </Link>
             ))}
             <Link
-              href="#register"
+              href="https://forms.gle/RM9bP4abFMBjLJTd8"
               className="ml-2 px-5 py-2 text-sm font-medium text-white rounded-full transition-all duration-300 hover:shadow-[0_0_25px_rgba(65,103,242,0.5)]"
               style={{
                 background: "linear-gradient(135deg, #4167F2, #6B8BF5)",
