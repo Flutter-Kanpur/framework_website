@@ -12,25 +12,28 @@ const footerLinks = [
       { name: "Tracks", href: "/#tracks" },
       // { name: "Schedule", href: "/#schedule" },
       { name: "Sponsors", href: "/#sponsors" },
+      { name: "Partner", href: "/#partner" },
       { name: "About", href: "/#about" },
+      { name: "Hackathon", href: "/#hackathon" },
     ],
   },
-  {
-    title: "Community",
-    links: [
-      { name: "Flutter Kanpur", href: "#" },
-      // { name: "GDG Kanpur", href: "#" },
-      { name: "Code of Conduct", href: "#" },
-      { name: "FAQ", href: "#" },
-    ],
-  },
+  // {
+  //   title: "Community",
+  //   links: [
+  //     { name: "Flutter Kanpur", href: "#" },
+  //     // { name: "GDG Kanpur", href: "#" },
+  //     { name: "Code of Conduct", href: "#" },
+  //     { name: "FAQ", href: "#" },
+  //   ],
+  // },
   {
     title: "Connect",
     links: [
-      { name: "Twitter / X", href: "#" },
-      { name: "Instagram", href: "#" },
-      { name: "LinkedIn", href: "#" },
-      { name: "Discord", href: "#" },
+      { name: "Twitter / X", href: "https://x.com/FlutterKanpur" },
+      { name: "Instagram", href: "https://www.instagram.com/flutterkanpur" },
+      { name: "LinkedIn", href: "https://www.linkedin.com/company/flutterkanpur/" },
+      { name: "Discord", href: "https://discord.gg/KwNDvGzQ" },
+      { name: "Reddit", href: "https://www.reddit.com/user/flutterkanpur/" },
     ],
   },
 ];

@@ -482,7 +482,7 @@ export default function HeroSection() {
 
           {/* Secondary CTA */}
           <motion.a
-            href="#schedule"
+            href="https://konfhub.com/framework"
             whileHover={{
               scale: 1.05,
               borderColor: "rgba(65,103,242,0.5)",
