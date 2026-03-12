@@ -9,11 +9,13 @@ import NetworkingSection from "./components/NetworkingSection";
 import LocationSection from "./components/LocationSection";
 import RegisterForm from "./components/RegisterForm";
 import Footer from "./components/Footer";
+import AboutSection from "./components/About";
 
 export default function Home() {
   return (
     <main>
       <HeroSection />
+      <AboutSection/>
       <FrameworkScrollSection />
       {/* <SpeakersSection /> */}
 
