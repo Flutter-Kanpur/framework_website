@@ -100,8 +100,10 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#4167F2] group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
-            <Link
+            <a
               href="https://forms.gle/RM9bP4abFMBjLJTd8"
+              target="_blank"
+              rel="noopener noreferrer"
               className="ml-2 px-5 py-2 text-sm font-medium text-white rounded-full transition-all duration-300 hover:shadow-[0_0_25px_rgba(65,103,242,0.5)]"
               style={{
                 background: "linear-gradient(135deg, #4167F2, #6B8BF5)",
@@ -109,7 +111,7 @@ export default function Navbar() {
               }}
             >
               Support Us
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Hamburger */}
@@ -188,7 +190,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              <Link
+              <a
                 href="https://forms.gle/RM9bP4abFMBjLJTd8"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -199,7 +201,7 @@ export default function Navbar() {
                 }}
               >
                 Support Us
-              </Link>
+              </a>
             </motion.div>
           </motion.div>
         )}
