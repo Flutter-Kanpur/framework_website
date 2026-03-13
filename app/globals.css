@@ -21,8 +21,8 @@
   --color-foreground-muted: var(--foreground-muted);
   --color-card-bg: var(--card-bg);
   --color-card-border: var(--card-border);
-  --font-heading: var(--font-michroma);
-  --font-body: var(--font-inter);
+  --font-heading: var(--font-proxon);
+  --font-body: var(--font-proxon);
 }
 
 html {
@@ -33,7 +33,7 @@ html {
 body {
   background-color: #000000 !important;
   color: #ffffff;
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-proxon), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 
