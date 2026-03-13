@@ -190,6 +190,8 @@ export default function Navbar() {
             >
               <Link
                 href="https://forms.gle/RM9bP4abFMBjLJTd8"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobileOpen(false)}
                 className="mt-4 px-8 py-3 text-white rounded-full font-medium text-sm"
                 style={{
