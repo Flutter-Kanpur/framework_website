@@ -4,9 +4,15 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 
-const YOUTUBE_VIDEO_ID = "kb-vRvyhm9o";
-const YOUTUBE_THUMBNAIL = `https://img.youtube.com/vi/${YOUTUBE_VIDEO_ID}/maxresdefault.jpg`;
-const YOUTUBE_THUMBNAIL_FALLBACK = `https://img.youtube.com/vi/${YOUTUBE_VIDEO_ID}/hqdefault.jpg`;
+/* Different videos for web vs mobile (breakpoint: 768px) */
+const YOUTUBE_VIDEO_ID_WEB = "BQN1uyPf0DE";
+const YOUTUBE_VIDEO_ID_MOBILE = "ARTaYThv_oQ";
+const MOBILE_BREAKPOINT = 768;
+
+function getThumbnailUrl(videoId: string, fallback = false) {
+  const type = fallback ? "hqdefault" : "maxresdefault";
+  return `https://img.youtube.com/vi/${videoId}/${type}.jpg`;
+}
 
 interface YouTubePlayerInstance {
   playVideo?: () => void;
@@ -46,11 +52,24 @@ function loadYouTubeAPI(): Promise<void> {
   });
 }
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+}
+
 export default function FrameworkScrollSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<YouTubePlayerInstance | null>(null);
+  const isMobile = useIsMobile();
+  const videoId = isMobile ? YOUTUBE_VIDEO_ID_MOBILE : YOUTUBE_VIDEO_ID_WEB;
   const [isPlaying, setIsPlaying] = useState(false);
-  const [thumbSrc, setThumbSrc] = useState(YOUTUBE_THUMBNAIL);
+  const [thumbSrc, setThumbSrc] = useState(getThumbnailUrl(YOUTUBE_VIDEO_ID_WEB));
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -59,7 +78,11 @@ export default function FrameworkScrollSection() {
 
   /* Panel starts small on the right, scales to fill screen */
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.4, 1]);
-  const borderRadius = useTransform(scrollYProgress, [0, 0.5], ["24px", "0px"]);
+  const borderRadius = useTransform(
+    scrollYProgress,
+    [0, 0.5],
+    ["24px", "10px"],
+  );
   const x = useTransform(scrollYProgress, [0, 0.4], ["15%", "0%"]);
   const y = useTransform(scrollYProgress, [0, 0.4], ["5%", "0%"]);
   const panelWidth = useTransform(scrollYProgress, [0, 0.5], ["70vw", "100vw"]);
@@ -83,18 +106,25 @@ export default function FrameworkScrollSection() {
   /* Play button fades in as panel grows */
   const playButtonOpacity = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
 
-  /* Scroll-based play/pause: in view = 0.2–0.8 */
+  /* Scroll-based play/pause and autoplay when in view: in view = 0.2–0.8 */
   const SECTION_IN_VIEW_MIN = 0.2;
   const SECTION_IN_VIEW_MAX = 0.8;
+
+  /* Keep thumbnail in sync with web/mobile videoId */
+  useEffect(() => {
+    setThumbSrc(getThumbnailUrl(videoId));
+  }, [videoId]);
 
   useEffect(() => {
     if (!isPlaying) return;
     const el = document.getElementById("framework-youtube-player");
     if (!el) return;
+    if (playerRef.current?.destroy) playerRef.current.destroy();
+    playerRef.current = null;
     loadYouTubeAPI().then(() => {
-      if (!window.YT?.Player || playerRef.current) return;
+      if (!window.YT?.Player) return;
       playerRef.current = new window.YT.Player("framework-youtube-player", {
-        videoId: YOUTUBE_VIDEO_ID,
+        videoId,
         playerVars: { autoplay: 1 },
       });
     });
@@ -102,19 +132,31 @@ export default function FrameworkScrollSection() {
       if (playerRef.current?.destroy) playerRef.current.destroy();
       playerRef.current = null;
     };
-  }, [isPlaying]);
+  }, [isPlaying, videoId]);
 
+  /* When section enters viewport: open video and autoplay. When leaves: pause. */
   useEffect(() => {
-    if (!isPlaying) return;
     const unsub = scrollYProgress.on("change", (v) => {
       const inView = v >= SECTION_IN_VIEW_MIN && v <= SECTION_IN_VIEW_MAX;
-      const player = playerRef.current;
-      if (!player?.getPlayerState) return;
-      try {
-        if (inView) player.playVideo?.();
-        else player.pauseVideo?.();
-      } catch {
-        // ignore
+      if (inView && !isPlaying) {
+        setIsPlaying(true);
+        return;
+      }
+      if (!inView && isPlaying) {
+        const player = playerRef.current;
+        try {
+          player?.pauseVideo?.();
+        } catch {
+          // ignore
+        }
+      }
+      if (inView && isPlaying) {
+        const player = playerRef.current;
+        try {
+          player?.playVideo?.();
+        } catch {
+          // ignore
+        }
       }
     });
     return () => unsub();
@@ -207,7 +249,7 @@ export default function FrameworkScrollSection() {
                   alt="Video thumbnail"
                   fill
                   className="object-cover select-none"
-                  onError={() => setThumbSrc(YOUTUBE_THUMBNAIL_FALLBACK)}
+                  onError={() => setThumbSrc(getThumbnailUrl(videoId, true))}
                 />
               </div>
 
