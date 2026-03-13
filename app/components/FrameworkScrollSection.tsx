@@ -1,11 +1,56 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+
+const YOUTUBE_VIDEO_ID = "kb-vRvyhm9o";
+const YOUTUBE_THUMBNAIL = `https://img.youtube.com/vi/${YOUTUBE_VIDEO_ID}/maxresdefault.jpg`;
+const YOUTUBE_THUMBNAIL_FALLBACK = `https://img.youtube.com/vi/${YOUTUBE_VIDEO_ID}/hqdefault.jpg`;
+
+interface YouTubePlayerInstance {
+  playVideo?: () => void;
+  pauseVideo?: () => void;
+  getPlayerState?: () => number;
+  destroy?: () => void;
+}
+
+declare global {
+  interface Window {
+    YT?: {
+      Player: new (
+        el: string,
+        opts: { videoId: string; playerVars?: Record<string, number> },
+      ) => YouTubePlayerInstance;
+    };
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
+
+function loadYouTubeAPI(): Promise<void> {
+  if (typeof window === "undefined") return Promise.resolve();
+  if (window.YT?.Player) return Promise.resolve();
+  return new Promise((resolve) => {
+    const existing = document.getElementById("youtube-iframe-api");
+    if (existing) {
+      if (window.YT?.Player) resolve();
+      else window.onYouTubeIframeAPIReady = () => resolve();
+      return;
+    }
+    window.onYouTubeIframeAPIReady = () => resolve();
+    const script = document.createElement("script");
+    script.id = "youtube-iframe-api";
+    script.src = "https://www.youtube.com/iframe_api";
+    script.async = true;
+    document.head.appendChild(script);
+  });
+}
 
 export default function FrameworkScrollSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<YouTubePlayerInstance | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [thumbSrc, setThumbSrc] = useState(YOUTUBE_THUMBNAIL);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -34,6 +79,46 @@ export default function FrameworkScrollSection() {
 
   /* Overlay gradient fades in */
   const overlayOpacity = useTransform(scrollYProgress, [0.3, 0.6], [0.3, 0.7]);
+
+  /* Play button fades in as panel grows */
+  const playButtonOpacity = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
+
+  /* Scroll-based play/pause: in view = 0.2–0.8 */
+  const SECTION_IN_VIEW_MIN = 0.2;
+  const SECTION_IN_VIEW_MAX = 0.8;
+
+  useEffect(() => {
+    if (!isPlaying) return;
+    const el = document.getElementById("framework-youtube-player");
+    if (!el) return;
+    loadYouTubeAPI().then(() => {
+      if (!window.YT?.Player || playerRef.current) return;
+      playerRef.current = new window.YT.Player("framework-youtube-player", {
+        videoId: YOUTUBE_VIDEO_ID,
+        playerVars: { autoplay: 1 },
+      });
+    });
+    return () => {
+      if (playerRef.current?.destroy) playerRef.current.destroy();
+      playerRef.current = null;
+    };
+  }, [isPlaying]);
+
+  useEffect(() => {
+    if (!isPlaying) return;
+    const unsub = scrollYProgress.on("change", (v) => {
+      const inView = v >= SECTION_IN_VIEW_MIN && v <= SECTION_IN_VIEW_MAX;
+      const player = playerRef.current;
+      if (!player?.getPlayerState) return;
+      try {
+        if (inView) player.playVideo?.();
+        else player.pauseVideo?.();
+      } catch {
+        // ignore
+      }
+    });
+    return () => unsub();
+  }, [isPlaying, scrollYProgress]);
 
   return (
     <div
@@ -83,53 +168,87 @@ export default function FrameworkScrollSection() {
             width: panelWidth,
             height: panelHeight,
           }}
-          className="relative bg-[#4167F2] overflow-hidden shadow-[0_0_60px_rgba(65,103,242,0.3)]"
+          className={`relative overflow-hidden ${isPlaying ? "bg-black" : "bg-[#4167F2] shadow-[0_0_60px_rgba(65,103,242,0.3)]"}`}
         >
-          {/* Background video / image placeholder */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Image
-              src="/logo.svg"
-              alt="Framework Logo"
-              width={300}
-              height={300}
-              className="opacity-[0.08] select-none"
-              style={{ filter: "brightness(0) invert(1)" }}
-            />
-          </div>
-
-          {/* Gradient overlay */}
-          <motion.div
-            style={{ opacity: overlayOpacity }}
-            className="absolute inset-0 bg-gradient-to-br from-[#4167F2]/60 via-[#2A4AD0]/40 to-black/70"
-          />
-
-          {/* Corner badge */}
-          <div className="absolute top-6 right-6 z-10">
-            <span
-              className="text-[10px] uppercase tracking-[0.2em] text-white/80 bg-white/10 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/10"
-              style={{ fontFamily: "var(--font-michroma)" }}
-            >
-              Live Demo
-            </span>
-          </div>
-
-          {/* Center play indicator (appears when panel is large) */}
-          <motion.div
-            style={{
-              opacity: useTransform(scrollYProgress, [0.4, 0.6], [0, 1]),
-            }}
-            className="absolute inset-0 flex items-center justify-center z-10"
-          >
-            <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border-2 border-white/30 flex items-center justify-center backdrop-blur-sm bg-white/5 hover:bg-white/10 transition-colors cursor-pointer">
-              <svg
-                className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white ml-1"
-                fill="currentColor"
-                viewBox="0 0 24 24"
+          {/* Embedded YouTube player (when playing) – API-controlled for scroll pause/play */}
+          {isPlaying ? (
+            <>
+              <div
+                id="framework-youtube-player"
+                className="absolute inset-0 w-full h-full z-20"
+              />
+              <button
+                type="button"
+                onClick={() => setIsPlaying(false)}
+                className="absolute top-6 right-6 z-30 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white backdrop-blur-sm border border-white/20 transition-colors"
+                aria-label="Close video"
               >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </motion.div>
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </>
+          ) : (
+            <>
+              {/* YouTube thumbnail placeholder */}
+              <div className="absolute inset-0">
+                <Image
+                  src={thumbSrc}
+                  alt="Video thumbnail"
+                  fill
+                  className="object-cover select-none"
+                  onError={() => setThumbSrc(YOUTUBE_THUMBNAIL_FALLBACK)}
+                />
+              </div>
+
+              {/* Gradient overlay */}
+              <motion.div
+                style={{ opacity: overlayOpacity }}
+                className="absolute inset-0 bg-gradient-to-br from-[#4167F2]/60 via-[#2A4AD0]/40 to-black/70"
+              />
+
+              {/* Corner badge */}
+              <div className="absolute top-6 right-6 z-10">
+                <span
+                  className="text-[10px] uppercase tracking-[0.2em] text-white/80 bg-white/10 px-4 py-1.5 rounded-full backdrop-blur-md border border-white/10"
+                  style={{ fontFamily: "var(--font-michroma)" }}
+                >
+                  Live Demo
+                </span>
+              </div>
+
+              {/* Center play indicator (appears when panel is large) – click to play */}
+              <motion.div
+                style={{ opacity: playButtonOpacity }}
+                className="absolute inset-0 flex items-center justify-center z-10"
+              >
+                <button
+                  type="button"
+                  onClick={() => setIsPlaying(true)}
+                  className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border-2 border-white/30 flex items-center justify-center backdrop-blur-sm bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  aria-label="Play video"
+                >
+                  <svg
+                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white ml-1"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </button>
+              </motion.div>
+            </>
+          )}
         </motion.div>
 
         {/* Bottom info bar – fades in after panel fills screen */}
