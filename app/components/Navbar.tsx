@@ -189,14 +189,14 @@ export default function Navbar() {
               transition={{ delay: 0.5 }}
             >
               <Link
-                href="#register"
+                href="https://forms.gle/RM9bP4abFMBjLJTd8"
                 onClick={() => setMobileOpen(false)}
                 className="mt-4 px-8 py-3 text-white rounded-full font-medium text-sm"
                 style={{
                   background: "linear-gradient(135deg, #4167F2, #6B8BF5)",
                 }}
               >
-                Register Now
+                Support Us
               </Link>
             </motion.div>
           </motion.div>
