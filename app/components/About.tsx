@@ -4,7 +4,7 @@ import AboutUsImage from "../../public/images/Flutter-Template.png";
 export default function AboutSection() {
   return (
     <section id="about" className="w-full py-24 bg-black text-white">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <div className="mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
         <div className="relative w-full h-[400px] md:h-[500px] rounded-2xl group">
           <div className="absolute inset-0 bg-blue-600/20 blur-3xl rounded-full scale-90 group-hover:scale-100 transition-transform duration-700 ease-in-out"></div>
 
