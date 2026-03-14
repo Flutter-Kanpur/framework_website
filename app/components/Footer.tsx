@@ -45,7 +45,7 @@ export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-white/5">
       {/* Large Brand Text (Griflan-style) */}
-      <div className="relative py-20 overflow-hidden">
+      <div className="relative py-12 md:py-20 overflow-hidden">
         {/* Background glow */}
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] opacity-10"
@@ -79,13 +79,11 @@ export default function Footer() {
       </div>
 
       {/* Footer Content */}
-      <div className="max-w-7xl mx-auto px-6 py-16 border-t border-white/5">
-        <div
-          className="grid grid-cols-2 md:grid-cols-4 gap-10"
-          style={{ display: "flex", justifyContent: "space-between" }}
-        >
+      <div className="max-w-7xl mx-auto px-6 py-12 md:py-16 border-t border-white/5">
+        {/* Desktop: 3 columns with space between. Mobile: single column, stacked, left-aligned */}
+        <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-10 md:gap-8">
           {/* Brand Column */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="max-w-sm">
             <div className="flex items-center gap-2 mb-4">
               <Image
                 src="/logo.svg"
@@ -109,11 +107,11 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Link Columns */}
+          {/* Link Columns - EVENT and CONNECT */}
           {footerLinks.map((section) => (
-            <div key={section.title}>
+            <div key={section.title} className="flex flex-col">
               <h4
-                className="text-xs tracking-[0.15em] text-gray-400 uppercase mb-4"
+                className="text-xs tracking-[0.15em] text-white uppercase mb-4"
                 style={{ fontFamily: "var(--font-michroma)" }}
               >
                 {section.title}
@@ -138,7 +136,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/5 py-6">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left">
           <p
             className="text-xs text-gray-600"
             style={{ fontFamily: "var(--font-inter)" }}
