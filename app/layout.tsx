@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Michroma, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import AdModal from "./components/AdModal";
 // import localfont from "next/font/local";
 
 // const proxon = localfont({
@@ -54,9 +55,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
       <body className={`${outfit.variable} ${michroma.variable}`}>
       {/* <body className={`${proxon.variable}`}> */}
+
+      <body className={`${inter.variable} ${michroma.variable}`}>
+        {/* <body className={`${proxon.variable}`}> */}
+
         <Navbar />
+        <AdModal />
         {children}
       </body>
     </html>

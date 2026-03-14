@@ -16,8 +16,12 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
+
       <Tape/>
       <AboutSection/>
+
+      <AboutSection />
+
       <FrameworkScrollSection />
       {/* <SpeakersSection /> */}
 
@@ -30,12 +34,12 @@ export default function Home() {
       /> */}
 
       <CTABanner
-  variant="primary"
-  heading="Get Ready to Build."
-  subtext="Registrations for our 48-hour hackathon are dropping soon. Stay tuned!"
-  buttonText="Coming Soon ⏳"
-  isDisabled={true} 
-/>
+        variant="primary"
+        heading="Get Ready to Build."
+        subtext="Registrations for our 48-hour hackathon are dropping soon. Stay tuned!"
+        buttonText="Coming Soon ⏳"
+        isDisabled={true}
+      />
 
       {/* about section to be added here */}
 
