@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Michroma, Outfit } from "next/font/google";
+import { Michroma, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import AdModal from "./components/AdModal";
@@ -57,7 +57,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${outfit.variable} ${michroma.variable}`}>
         {/* <body className={`${proxon.variable}`}> */}
-
         <Navbar />
         <AdModal />
         {children}

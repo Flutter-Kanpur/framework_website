@@ -7,35 +7,48 @@ import Image from "next/image";
 
 /* Categorized Sponsor Data */
 const sponsorTiers = [
-  {
-    tierName: "Platinum Sponsors",
-    // Swapped gridClass for layoutClass to control max width
-    layoutClass: "max-w-4xl",
-    // Added specific widths so cards don't stretch awkwardly in flex
-    cardClass: "w-full sm:w-[380px] py-10 md:py-14 min-h-[160px] text-xl md:text-3xl",
-    hoverEffect: "hover:border-[#E5E4E2] hover:shadow-[0_0_30px_rgba(229,228,226,0.15)] text-gray-400 hover:text-[#E5E4E2]",
-    sponsors: [
-      { name: "Google", logo: "/logo/google.svg", width: 48, height: 48 },
-      { name: "Flutter", logo: "/logo/flutter.svg", width: 48, height: 48 },
-    ],
-  },
+  // {
+  //   tierName: "Platinum Sponsors",
+  //   // Swapped gridClass for layoutClass to control max width
+  //   layoutClass: "max-w-4xl",
+  //   // Added specific widths so cards don't stretch awkwardly in flex
+  //   cardClass:
+  //     "w-full sm:w-[380px] py-10 md:py-14 min-h-[160px] text-xl md:text-3xl",
+  //   hoverEffect:
+  //     "hover:border-[#E5E4E2] hover:shadow-[0_0_30px_rgba(229,228,226,0.15)] text-gray-400 hover:text-[#E5E4E2]",
+  //   sponsors: [
+  //     { name: "Google", logo: "/logo/google.svg", width: 48, height: 48 },
+  //     { name: "Flutter", logo: "/logo/flutter.svg", width: 48, height: 48 },
+  //   ],
+  // },
   {
     tierName: "Gold Sponsors",
     layoutClass: "max-w-5xl",
-    cardClass: "w-full sm:w-[320px] py-8 md:py-10 min-h-[120px] text-lg md:text-2xl",
-    hoverEffect: "hover:border-[#FFD700] hover:shadow-[0_0_25px_rgba(255,215,0,0.15)] text-gray-500 hover:text-[#FFD700]",
+    cardClass:
+      "w-full sm:w-[320px] py-8 md:py-10 min-h-[120px] text-lg md:text-2xl",
+    hoverEffect:
+      "hover:border-[#FFD700] hover:shadow-[0_0_25px_rgba(255,215,0,0.15)] text-gray-500 hover:text-[#FFD700]",
     sponsors: [
       { name: "Shorebird", logo: "/logo/shorebird.svg", width: 40, height: 40 },
+      { name: "Google", logo: "/logo/google.svg", width: 48, height: 48 },
+      { name: "Flutter", logo: "/logo/flutter.svg", width: 48, height: 48 },
     ],
   },
   {
     tierName: "Community Partners",
     layoutClass: "max-w-6xl",
     // 2-up on mobile, fixed width on desktop
-    cardClass: "w-[calc(50%-0.5rem)] sm:w-[240px] py-6 md:py-8 min-h-[100px] text-base md:text-xl",
-    hoverEffect: "hover:border-[#C0C0C0] hover:shadow-[0_0_20px_rgba(192,192,192,0.15)] text-gray-500 hover:text-[#C0C0C0]",
+    cardClass:
+      "w-[calc(50%-0.5rem)] sm:w-[240px] py-6 md:py-8 min-h-[100px] text-base md:text-xl",
+    hoverEffect:
+      "hover:border-[#C0C0C0] hover:shadow-[0_0_20px_rgba(192,192,192,0.15)] text-gray-500 hover:text-[#C0C0C0]",
     sponsors: [
-      { name: "AI Jalander", logo: "/logo/jalandhar.png", width: 32, height: 32 },
+      {
+        name: "AI Jalander",
+        logo: "/logo/jalandhar.png",
+        width: 32,
+        height: 32,
+      },
       // { name: "Zomato", logo: "/logos/zomato.svg", width: 32, height: 32 },
       // { name: "Swiggy", logo: "/logos/swiggy.svg", width: 32, height: 32 },
       // { name: "Jio", logo: "/logos/jio.svg", width: 32, height: 32 },
@@ -69,7 +82,6 @@ export default function SponsorsSection() {
       className="py-20 md:py-32 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        
         {/* Header */}
         <motion.div
           style={{ y: headingY, opacity: headingOpacity }}
@@ -90,7 +102,8 @@ export default function SponsorsSection() {
           <div
             className="w-20 h-1 mx-auto rounded-full"
             style={{
-              background: "linear-gradient(90deg, transparent, #4167F2, transparent)",
+              background:
+                "linear-gradient(90deg, transparent, #4167F2, transparent)",
             }}
           />
         </motion.div>
@@ -98,16 +111,21 @@ export default function SponsorsSection() {
         {/* ═══ TIERED SPONSORS (FLEX LAYOUT) ═══ */}
         <div className="flex flex-col items-center justify-center gap-16 md:gap-24 mb-20 md:mb-32 w-full">
           {sponsorTiers.map((tier, index) => (
-            <AnimatedSection key={index} className="flex flex-col items-center justify-center w-full">
+            <AnimatedSection
+              key={index}
+              className="flex flex-col items-center justify-center w-full"
+            >
               <h3
                 className="text-center text-[10px] sm:text-xs tracking-[0.2em] text-[#4167F2] uppercase mb-8 md:mb-12"
                 style={{ fontFamily: "var(--font-michroma)" }}
               >
                 {tier.tierName}
               </h3>
-              
+
               {/* Changed from Grid to Flexbox for absolute centering */}
-              <div className={`flex flex-wrap justify-center items-center gap-4 sm:gap-6 w-full mx-auto ${tier.layoutClass}`}>
+              <div
+                className={`flex flex-wrap justify-center items-center gap-4 sm:gap-6 w-full mx-auto ${tier.layoutClass}`}
+              >
                 {tier.sponsors.map((sponsor, i) => (
                   <div
                     key={i}
@@ -140,8 +158,8 @@ export default function SponsorsSection() {
             </AnimatedSection>
           ))}
         </div>
-        </div>
-        </section>
+      </div>
+    </section>
   );
 }
 

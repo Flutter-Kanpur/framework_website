@@ -35,7 +35,7 @@ html {
 body {
   background-color: #000000 !important;
   color: #ffffff;
-  font-family: var(--font-proxon), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-outfit), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 

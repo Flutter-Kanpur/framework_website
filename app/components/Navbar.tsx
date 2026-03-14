@@ -16,8 +16,8 @@ const leftLinks = [
 
 const rightLinks = [
   // { name: "Sponsor", href: "/#sponsors" },
-  { name: "Partner", href: "/#partners" },
-  { name: "Hackathon", href: "/#hackathon" },
+  { name: "Partner", href: "/#sponsors" },
+  { name: "Hackathon", href: "/#project-idea" },
   // { name: "Support Us", href: "/#supportus" },
   //   { name: "Networking", href: "/#networking" },
 ];

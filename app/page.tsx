@@ -43,13 +43,15 @@ export default function Home() {
       {/* <ScheduleSection /> */}
 
       {/* CTA 2: After schedule */}
-      <CTABanner
-        variant="gradient"
-        heading="Got a Project Idea?"
-        subtext="Form your team, pick a track, and bring your vision to life at the hackathon."
-        buttonText="Submit Your Idea"
-        buttonHref="#register"
-      />
+      <section id="project-idea" className="scroll-mt-20">
+        <CTABanner
+          variant="gradient"
+          heading="Got a Project Idea?"
+          subtext="Form your team, pick a track, and bring your vision to life at the hackathon."
+          buttonText="Submit Your Idea"
+          buttonHref="#register"
+        />
+      </section>
 
       <SponsorsSection />
       <NetworkingSection />

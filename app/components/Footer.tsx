@@ -12,9 +12,9 @@ const footerLinks = [
       { name: "Tracks", href: "/#tracks" },
       // { name: "Schedule", href: "/#schedule" },
       { name: "Sponsors", href: "/#sponsors" },
-      { name: "Partner", href: "/#partner" },
+      { name: "Partner", href: "/#sponsors" },
       { name: "About", href: "/#about" },
-      { name: "Hackathon", href: "/#hackathon" },
+      { name: "Hackathon", href: "/#project-idea" },
     ],
   },
   // {
@@ -31,8 +31,11 @@ const footerLinks = [
     links: [
       { name: "Twitter / X", href: "https://x.com/FlutterKanpur" },
       { name: "Instagram", href: "https://www.instagram.com/flutterkanpur" },
-      { name: "LinkedIn", href: "https://www.linkedin.com/company/flutterkanpur/" },
-      { name: "Discord", href: "https://discord.gg/KwNDvGzQ" },
+      {
+        name: "LinkedIn",
+        href: "https://www.linkedin.com/company/flutterkanpur/",
+      },
+      { name: "Youtube", href: "https://www.youtube.com/@flutterkanpur" },
       { name: "Reddit", href: "https://www.reddit.com/user/flutterkanpur/" },
     ],
   },
@@ -77,7 +80,10 @@ export default function Footer() {
 
       {/* Footer Content */}
       <div className="max-w-7xl mx-auto px-6 py-16 border-t border-white/5">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div
+          className="grid grid-cols-2 md:grid-cols-4 gap-10"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
           {/* Brand Column */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">

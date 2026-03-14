@@ -35,7 +35,11 @@ function AnimatedLetters({
             delay: delay + i * 0.04,
             ease: [0.25, 0.4, 0.25, 1],
           }}
-          style={{ display: "inline-block", transformOrigin: "bottom" }}
+          style={{
+            fontFamily: "var(--font-outfit)",
+            display: "inline-block",
+            transformOrigin: "bottom",
+          }}
         >
           {char === " " ? "\u00A0" : char}
         </motion.span>
@@ -376,10 +380,10 @@ export default function HeroSection() {
           style={{ y: titleY, scale: titleScale, rotateX: titleRotateX }}
           className="mb-4 [perspective:1000px]"
         >
-          <div className="flex items-baseline justify-center gap-2 md:gap-4 flex-wrap"
-          style={{ fontFamily: "var(--font-poppins)" }}
+          <div
+            className="flex items-baseline justify-center gap-2 md:gap-4 flex-wrap"
+            style={{ fontFamily: "var(--font-poppins)" }}
           >
-
             <AnimatedLetters
               text="FRAMEWORK"
               delay={0.4}
@@ -401,7 +405,7 @@ export default function HeroSection() {
               }}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl gradient-text tracking-wider font-extrabold"
               style={{
-                fontFamily: "var(--font-michroma)",
+                fontFamily: "var(--font-outfit)",
                 display: "inline-block",
               }}
             >
@@ -482,7 +486,7 @@ export default function HeroSection() {
               }}
             />
             <span className="relative z-10">Get Conference Pass →</span>
-          </motion.a> 
+          </motion.a>
 
           {/* Secondary CTA */}
           {/* <motion.a
