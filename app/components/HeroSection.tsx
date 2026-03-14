@@ -9,9 +9,9 @@ import {
   useSpring,
   useInView,
 } from "framer-motion";
-import FlutterMascott from "../../public/images/flutter-mascott.png";
+// import FlutterMascott from "../../public/images/flutter-mascott.png";
 import FlutterKanpurLogoV1 from "../../public/images/flutter-kanpur-logo.svg";
-import FrameworkLogo from "../../public/logo.svg";
+// import FrameworkLogo from "../../public/logo.svg";
 
 /* ─── letter-by-letter stagger animation ─── */
 function AnimatedLetters({
@@ -307,7 +307,7 @@ export default function HeroSection() {
               style={{ background: "rgba(65,103,242,0.25)" }}
             />
             {/* Mascot image with 3D depth */}
-            <Image
+            {/* <Image
               src={FlutterMascott}
               alt="Framework Mascot"
               width={260}
@@ -315,7 +315,7 @@ export default function HeroSection() {
               className="w-36 h-36 md:w-52 md:h-52 lg:w-64 lg:h-64 object-contain drop-shadow-[0_20px_40px_rgba(65,103,242,0.3)] select-none"
               style={{ transform: "translateZ(40px)" }}
               priority
-            />
+            /> */}
             {/* Floating sparkles around mascot */}
             <motion.div
               animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.3, 0.8, 0.3] }}
@@ -376,17 +376,20 @@ export default function HeroSection() {
           style={{ y: titleY, scale: titleScale, rotateX: titleRotateX }}
           className="mb-4 [perspective:1000px]"
         >
-          <div className="flex items-baseline justify-center gap-3 md:gap-5 flex-wrap">
+          <div className="flex items-baseline justify-center gap-2 md:gap-4 flex-wrap"
+          style={{ fontFamily: "var(--font-poppins)" }}
+          >
+
             <AnimatedLetters
-              text="FRAME"
+              text="FRAMEWORK"
               delay={0.4}
-              className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl text-white tracking-wider font-black"
+              className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl text-white  font-black"
             />
-            <AnimatedLetters
+            {/* <AnimatedLetters
               text="WORK"
               delay={0.7}
               className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl text-white tracking-wider font-black"
-            />
+            /> */}
             {/* Version with special pop-in */}
             <motion.span
               initial={{ opacity: 0, scale: 0, rotate: -12 }}
@@ -455,7 +458,8 @@ export default function HeroSection() {
         >
           {/* Primary CTA */}
           <motion.a
-            href="#register"
+            href="https://konfhub.com/framework"
+            target="_blank"
             whileHover={{
               scale: 1.06,
               boxShadow: "0 0 40px rgba(65,103,242,0.5)",
@@ -477,11 +481,11 @@ export default function HeroSection() {
                   "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
               }}
             />
-            <span className="relative z-10">Get the Hackathon Pass →</span>
-          </motion.a>
+            <span className="relative z-10">Get Conference Pass →</span>
+          </motion.a> 
 
           {/* Secondary CTA */}
-          <motion.a
+          {/* <motion.a
             href="https://konfhub.com/framework"
             whileHover={{
               scale: 1.05,
@@ -493,7 +497,7 @@ export default function HeroSection() {
             style={{ fontFamily: "var(--font-inter)" }}
           >
             Get Conference Pass
-          </motion.a>
+          </motion.a> */}
         </motion.div>
 
         {/* ─── STATS BAR with parallax + staggered reveal ─── */}

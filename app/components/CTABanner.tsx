@@ -3,12 +3,20 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
+// interface CTABannerProps {
+//     variant?: "primary" | "gradient" | "outline";
+//     heading: string;
+//     subtext: string;
+//     buttonText: string;
+//     buttonHref?: string;
+// }
 interface CTABannerProps {
     variant?: "primary" | "gradient" | "outline";
     heading: string;
     subtext: string;
     buttonText: string;
     buttonHref?: string;
+    isDisabled?: boolean; 
 }
 
 export default function CTABanner({
@@ -17,6 +25,7 @@ export default function CTABanner({
     subtext,
     buttonText,
     buttonHref = "#register",
+    isDisabled = false,
 }: CTABannerProps) {
     const ref = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
@@ -80,7 +89,7 @@ export default function CTABanner({
                                 {subtext}
                             </p>
                         </div>
-                        <motion.a
+                        {/* <motion.a
                             href={buttonHref}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -88,7 +97,21 @@ export default function CTABanner({
                             style={{ fontFamily: "var(--font-inter)" }}
                         >
                             {buttonText}
-                        </motion.a>
+                        </motion.a> */}
+
+
+                        
+
+<motion.a
+    href={isDisabled ? undefined : buttonHref}
+    whileHover={isDisabled ? {} : { scale: 1.05 }}
+    whileTap={isDisabled ? {} : { scale: 0.95 }}
+    className={`px-7 sm:px-8 py-3 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base whitespace-nowrap transition-all duration-300 ${styles.btn} ${isDisabled ? 'opacity-80 cursor-not-allowed pointer-events-none' : ''}`}
+    style={{ fontFamily: "var(--font-inter)" }}
+>
+    {buttonText}
+</motion.a>
+
                     </div>
                 </div>
             </motion.div>

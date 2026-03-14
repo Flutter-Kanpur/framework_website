@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
-// import { Inter, Michroma } from "next/font/google";
+import { Inter, Michroma } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import localfont from "next/font/local";
+// import localfont from "next/font/local";
 
-const proxon = localfont({
-  src: "../public/font/PROXON.ttf",
-  variable: "--font-proxon",
+// const proxon = localfont({
+//   src: "../public/font/PROXON.ttf",
+//   variable: "--font-proxon",
+// });
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-// const inter = Inter({
-//   variable: "--font-inter",
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "600", "700"],
-// });
-
-// const michroma = Michroma({
-//   variable: "--font-michroma",
-//   subsets: ["latin"],
-//   weight: "400",
-// });
+const michroma = Michroma({
+  variable: "--font-michroma",
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: "FrameWork 1.0 ",
@@ -48,8 +48,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <body className={`${inter.variable} ${michroma.variable}`}> */}
-      <body className={`${proxon.variable}`}>
+      <body className={`${inter.variable} ${michroma.variable}`}>
+      {/* <body className={`${proxon.variable}`}> */}
         <Navbar />
         {children}
       </body>

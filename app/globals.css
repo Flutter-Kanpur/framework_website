@@ -21,8 +21,10 @@
   --color-foreground-muted: var(--foreground-muted);
   --color-card-bg: var(--card-bg);
   --color-card-border: var(--card-border);
-  --font-heading: var(--font-proxon);
-  --font-body: var(--font-proxon);
+  /* --font-heading: var(--font-proxon);
+  --font-body: var(--font-proxon); */
+  --font-heading: var(--font-michroma);
+  --font-body: var(--font-inter);
 }
 
 html {

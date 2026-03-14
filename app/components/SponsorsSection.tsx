@@ -3,79 +3,55 @@
 import AnimatedSection from "./AnimatedSection";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
-/* Existing sponsor logos (marquee) */
-const existingSponsors = [
-  "Google",
-  "Flutter",
-  "Firebase",
-  "Razorpay",
-  "PhonePe",
-  "Jio",
-  "Zomato",
-  "Swiggy",
-  "Paytm",
-  "CRED",
-  "Vercel",
-  "GitHub",
-  "Notion",
-  "Figma",
-  "AWS",
+/* Categorized Sponsor Data */
+const sponsorTiers = [
+  {
+    tierName: "Platinum Sponsors",
+    // Swapped gridClass for layoutClass to control max width
+    layoutClass: "max-w-4xl",
+    // Added specific widths so cards don't stretch awkwardly in flex
+    cardClass: "w-full sm:w-[380px] py-10 md:py-14 min-h-[160px] text-xl md:text-3xl",
+    hoverEffect: "hover:border-[#E5E4E2] hover:shadow-[0_0_30px_rgba(229,228,226,0.15)] text-gray-400 hover:text-[#E5E4E2]",
+    sponsors: [
+      { name: "Google", logo: "/logo/google.svg", width: 48, height: 48 },
+      { name: "Flutter", logo: "/logo/flutter.svg", width: 48, height: 48 },
+    ],
+  },
+  {
+    tierName: "Gold Sponsors",
+    layoutClass: "max-w-5xl",
+    cardClass: "w-full sm:w-[320px] py-8 md:py-10 min-h-[120px] text-lg md:text-2xl",
+    hoverEffect: "hover:border-[#FFD700] hover:shadow-[0_0_25px_rgba(255,215,0,0.15)] text-gray-500 hover:text-[#FFD700]",
+    sponsors: [
+      { name: "Shorebird", logo: "/logo/shorebird.svg", width: 40, height: 40 },
+    ],
+  },
+  {
+    tierName: "Community Partners",
+    layoutClass: "max-w-6xl",
+    // 2-up on mobile, fixed width on desktop
+    cardClass: "w-[calc(50%-0.5rem)] sm:w-[240px] py-6 md:py-8 min-h-[100px] text-base md:text-xl",
+    hoverEffect: "hover:border-[#C0C0C0] hover:shadow-[0_0_20px_rgba(192,192,192,0.15)] text-gray-500 hover:text-[#C0C0C0]",
+    sponsors: [
+      { name: "AI Jalander", logo: "/logo/jalandhar.png", width: 32, height: 32 },
+      // { name: "Zomato", logo: "/logos/zomato.svg", width: 32, height: 32 },
+      // { name: "Swiggy", logo: "/logos/swiggy.svg", width: 32, height: 32 },
+      // { name: "Jio", logo: "/logos/jio.svg", width: 32, height: 32 },
+    ],
+  },
 ];
 
-/* Sponsorship tier cards */
-const tiers = [
-  {
-    name: "Platinum",
-    price: "₹5,00,000",
-    color: "#4167F2",
-    glow: "rgba(65,103,242,0.4)",
-    perks: [
-      "Main stage branding",
-      "Keynote slot (15 min)",
-      "Premium booth (10×10)",
-      "Logo on all materials",
-      "50 VIP passes",
-      "Social media feature",
-    ],
-    featured: true,
-  },
-  {
-    name: "Gold",
-    price: "₹3,00,000",
-    color: "#f59e0b",
-    glow: "rgba(245,158,11,0.3)",
-    perks: [
-      "Stage branding",
-      "Workshop slot",
-      "Standard booth (8×8)",
-      "Logo on website & banners",
-      "30 passes",
-    ],
-    featured: false,
-  },
-  {
-    name: "Silver",
-    price: "₹1,50,000",
-    color: "#94a3b8",
-    glow: "rgba(148,163,184,0.3)",
-    perks: [
-      "Banner placement",
-      "Logo on website",
-      "Small booth (6×6)",
-      "15 passes",
-    ],
-    featured: false,
-  },
-  {
-    name: "Bronze",
-    price: "₹75,000",
-    color: "#b45309",
-    glow: "rgba(180,83,9,0.3)",
-    perks: ["Logo on website", "Social media mention", "5 passes"],
-    featured: false,
-  },
-];
+/* Marquee Sponsors for lower tier/community partners */
+// const communityPartners = [
+//   { name: "Flutter", logo: "/logos/flutter.svg", width: 28, height: 28 },
+//   // { name: "GitHub", logo: "/logos/github.svg", width: 28, height: 28 },
+//   // { name: "Notion", logo: "/logos/notion.svg", width: 28, height: 28 },
+//   // { name: "Figma", logo: "/logos/figma.svg" , width: 28, height: 28 },
+//   // { name: "Paytm", logo: "/logos/paytm.svg", width: 28, height: 28 },
+//   // { name: "CRED", logo: "/logos/cred.svg", width: 28, height: 28 },
+// ];
 
 export default function SponsorsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -93,10 +69,11 @@ export default function SponsorsSection() {
       className="py-20 md:py-32 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        
         {/* Header */}
         <motion.div
           style={{ y: headingY, opacity: headingOpacity }}
-          className="text-center mb-14 md:mb-20"
+          className="text-center mb-16 md:mb-24 flex flex-col items-center w-full"
         >
           <span
             className="text-[10px] sm:text-xs tracking-[0.3em] text-[#4167F2] uppercase mb-4 block"
@@ -113,131 +90,103 @@ export default function SponsorsSection() {
           <div
             className="w-20 h-1 mx-auto rounded-full"
             style={{
-              background:
-                "linear-gradient(90deg, transparent, #4167F2, transparent)",
+              background: "linear-gradient(90deg, transparent, #4167F2, transparent)",
             }}
           />
         </motion.div>
 
-        {/* ═══ EXISTING SPONSORS MARQUEE ═══ */}
-        <AnimatedSection className="mb-16 md:mb-24">
-          <h3
-            className="text-center text-[10px] sm:text-xs tracking-[0.2em] text-gray-400 uppercase mb-6"
-            style={{ fontFamily: "var(--font-michroma)" }}
-          >
-            Trusted By Leading Companies
-          </h3>
-          <div className="relative overflow-hidden">
-            {/* Fade edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-black to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-black to-transparent z-10" />
-
-            {/* Marquee track */}
-            <div className="flex animate-marquee whitespace-nowrap">
-              {[...existingSponsors, ...existingSponsors].map((sponsor, i) => (
-                <div
-                  key={i}
-                  className="mx-4 sm:mx-6 px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center min-w-[120px] sm:min-w-[150px] hover:border-[#4167F2]/30 transition-all duration-300 group cursor-pointer"
-                >
-                  <span
-                    className="text-sm sm:text-base font-bold text-gray-600 group-hover:text-[#4167F2] transition-colors duration-300 tracking-wider"
-                    style={{ fontFamily: "var(--font-michroma)" }}
-                  >
-                    {sponsor}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </AnimatedSection>
-
-        {/* ═══ SPONSORSHIP TIER CARDS ═══ */}
-        {/* <AnimatedSection>
-                    <h3
-                        className="text-center text-[10px] sm:text-xs tracking-[0.2em] text-gray-400 uppercase mb-8 md:mb-10"
-                        style={{ fontFamily: "var(--font-michroma)" }}
-                    >
-                        Become a Sponsor
-                    </h3>
-                </AnimatedSection> */}
-
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-          {tiers.map((tier, i) => (
-            <AnimatedSection key={tier.name} delay={i * 0.1}>
-              <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                className={`group relative h-full p-5 sm:p-6 rounded-2xl border overflow-hidden cursor-pointer transition-all duration-500 ${
-                  tier.featured
-                    ? "border-[#4167F2]/40 bg-gradient-to-b from-[#4167F2]/10 to-transparent"
-                    : "border-white/5 bg-white/[0.02] hover:border-white/10"
-                }`}
+        {/* ═══ TIERED SPONSORS (FLEX LAYOUT) ═══ */}
+        <div className="flex flex-col items-center justify-center gap-16 md:gap-24 mb-20 md:mb-32 w-full">
+          {sponsorTiers.map((tier, index) => (
+            <AnimatedSection key={index} className="flex flex-col items-center justify-center w-full">
+              <h3
+                className="text-center text-[10px] sm:text-xs tracking-[0.2em] text-[#4167F2] uppercase mb-8 md:mb-12"
+                style={{ fontFamily: "var(--font-michroma)" }}
               >
-                {tier.featured && (
-                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#4167F2] to-transparent" />
-                )}
-
-                <div className="mb-5">
-                  <span
-                    className="text-[10px] tracking-[0.2em] uppercase font-bold"
-                    style={{
-                      color: tier.color,
-                      fontFamily: "var(--font-michroma)",
-                    }}
+                {tier.tierName}
+              </h3>
+              
+              {/* Changed from Grid to Flexbox for absolute centering */}
+              <div className={`flex flex-wrap justify-center items-center gap-4 sm:gap-6 w-full mx-auto ${tier.layoutClass}`}>
+                {tier.sponsors.map((sponsor, i) => (
+                  <div
+                    key={i}
+                    className={`
+                      border border-white/5 bg-white/[0.02] rounded-xl 
+                      flex items-center justify-center
+                      transition-all duration-500 group cursor-pointer
+                      ${tier.cardClass} ${tier.hoverEffect}
+                    `}
                   >
-                    {tier.name}
-                  </span>
-                  <p
-                    className="text-2xl sm:text-3xl text-white mt-2 font-bold"
-                    style={{ fontFamily: "var(--font-inter)" }}
-                  >
-                    {tier.price}
-                  </p>
-                </div>
-
-                <ul className="space-y-2.5 mb-6">
-                  {tier.perks.map((perk) => (
-                    <li
-                      key={perk}
-                      className="flex items-start gap-2.5 text-sm text-gray-400"
-                    >
-                      <span
-                        className="mt-1 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                        style={{ background: tier.color }}
+                    {/* Flex row for Image + Text */}
+                    <div className="flex items-center justify-center gap-3 sm:gap-4 px-4 w-full">
+                      <Image
+                        src={sponsor.logo}
+                        alt={`${sponsor.name} Logo`}
+                        width={sponsor.width}
+                        height={sponsor.height}
+                        className="object-contain opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
                       />
-                      {perk}
-                    </li>
-                  ))}
-                </ul>
-
-                <a
-                  href="mailto:sponsors@flutterkanpur.dev"
-                  className="block w-full text-center py-2.5 rounded-full text-sm font-medium transition-all duration-300 hover:shadow-lg"
-                  style={{
-                    color: tier.featured ? "#fff" : tier.color,
-                    background: tier.featured
-                      ? `linear-gradient(135deg, ${tier.color}, ${tier.color}cc)`
-                      : "transparent",
-                    border: tier.featured
-                      ? "none"
-                      : `1px solid ${tier.color}40`,
-                    boxShadow: tier.featured ? `0 0 20px ${tier.glow}` : "none",
-                    fontFamily: "var(--font-inter)",
-                  }}
-                >
-                  Get in Touch
-                </a>
-                <div
-                  className="absolute bottom-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-[0.08] transition-opacity"
-                  style={{
-                    background: `radial-gradient(circle at bottom right, ${tier.color}, transparent 70%)`,
-                  }}
-                />
-              </motion.div>
+                      <span
+                        className="font-bold tracking-wider transition-colors duration-300"
+                        style={{ fontFamily: "var(--font-michroma)" }}
+                      >
+                        {sponsor.name}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </AnimatedSection>
           ))}
-        </div> */}
-      </div>
-    </section>
+        </div>
+        </div>
+        </section>
   );
 }
+
+//         <AnimatedSection className="w-full">
+//           <h3
+//             className="text-center text-[10px] sm:text-xs tracking-[0.2em] text-gray-500 uppercase mb-8"
+//             style={{ fontFamily: "var(--font-michroma)" }}
+//           >
+//             Community Partners
+//           </h3>
+//           <div className="relative overflow-hidden w-full">
+//             {/* Fade edges */}
+//             <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+//             <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+
+//             {/* Marquee track */}
+//             <div className="flex animate-marquee whitespace-nowrap hover:[animation-play-state:paused]">
+//               {[...communityPartners, ...communityPartners].map((sponsor, i) => (
+//                 <div
+//                   key={i}
+//                   className="mx-4 sm:mx-6 px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center min-w-[160px] sm:min-w-[200px] hover:border-[#4167F2]/40 transition-all duration-300 group cursor-pointer hover:shadow-[0_0_15px_rgba(65,103,242,0.15)]"
+//                 >
+//                   {/* Flex row for Marquee Image + Text */}
+//                   <div className="flex items-center justify-center gap-3">
+//                     <Image
+//                       src={sponsor.logo}
+//                       alt={`${sponsor.name} Logo`}
+//                       width={sponsor.width}
+//                       height={sponsor.height}
+//                       className="object-contain opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+//                     />
+//                     <span
+//                       className="text-sm sm:text-base font-bold text-gray-500 group-hover:text-[#4167F2] transition-colors duration-300 tracking-wider"
+//                       style={{ fontFamily: "var(--font-michroma)" }}
+//                     >
+//                       {sponsor.name}
+//                     </span>
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         </AnimatedSection>
+
+//       </div>
+//     </section>
+//   );
+// }
