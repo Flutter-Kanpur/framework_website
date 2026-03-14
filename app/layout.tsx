@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Michroma } from "next/font/google";
+import { Inter, Michroma, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import AdModal from "./components/AdModal";
@@ -10,16 +10,22 @@ import AdModal from "./components/AdModal";
 //   variable: "--font-proxon",
 // });
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
+// const inter = Inter({
+//   variable: "--font-inter",
+//   subsets: ["latin"],
+//   weight: ["300", "400", "500", "600", "700"],
+// });
 
 const michroma = Michroma({
   variable: "--font-michroma",
   subsets: ["latin"],
   weight: "400",
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -49,8 +55,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+
+      <body className={`${outfit.variable} ${michroma.variable}`}>
+      {/* <body className={`${proxon.variable}`}> */}
+
       <body className={`${inter.variable} ${michroma.variable}`}>
         {/* <body className={`${proxon.variable}`}> */}
+
         <Navbar />
         <AdModal />
         {children}
