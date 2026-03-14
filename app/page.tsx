@@ -16,12 +16,8 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
-
-      <Tape/>
-      <AboutSection/>
-
+      <Tape />
       <AboutSection />
-
       <FrameworkScrollSection />
       {/* <SpeakersSection /> */}
 

@@ -55,11 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
       <body className={`${outfit.variable} ${michroma.variable}`}>
-      {/* <body className={`${proxon.variable}`}> */}
-
-      <body className={`${inter.variable} ${michroma.variable}`}>
         {/* <body className={`${proxon.variable}`}> */}
 
         <Navbar />
