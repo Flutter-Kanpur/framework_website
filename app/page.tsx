@@ -33,9 +33,9 @@ export default function Home() {
         variant="primary"
         heading="Get Ready to Build."
         subtext="Registrations for our 10hr hackathon are dropping soon. Stay tuned!"
-        buttonText="Coming Soon ⏳"
+        buttonText="Coming Soon"
         isDisabled={true}
-        comingSoonDate="2026-04-15T09:00:00"
+        comingSoonDate="2026-03-20T10:00:00"
       />
 
       {/* about section to be added here */}

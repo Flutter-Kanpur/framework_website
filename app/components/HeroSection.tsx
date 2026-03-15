@@ -511,7 +511,7 @@ export default function HeroSection() {
               { value: "300", suffix: "+", label: "Attendees", delay: 1.8 },
               { value: "10", suffix: "+", label: "Speaker", delay: 2.0 },
               { value: "10", suffix: "+", label: "Track", delay: 2.2 },
-              { value: "10", suffix: "hrs", label: "Hackathon", delay: 2.4 },
+              { value: "10", suffix: "Hrs", label: "Hackathon", delay: 2.4 },
             ].map((stat) => (
               <motion.div
                 key={stat.label}
