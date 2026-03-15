@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import HashLink from "./HashLink";
 
 const leftLinks = [
   // { name: "Speaker", href: "/#speakers" },
@@ -55,7 +56,7 @@ export default function Navbar() {
           {/* Left Links (Desktop) */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1">
             {leftLinks.map((link) => (
-              <Link
+              <HashLink
                 key={link.name}
                 href={link.href}
                 className="text-sm text-gray-400 hover:text-white transition-colors duration-300 relative group tracking-wide"
@@ -63,7 +64,7 @@ export default function Navbar() {
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#4167F2] group-hover:w-full transition-all duration-300" />
-              </Link>
+              </HashLink>
             ))}
           </div>
 
@@ -90,7 +91,7 @@ export default function Navbar() {
           {/* Right Links + CTA (Desktop) */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-end">
             {rightLinks.map((link) => (
-              <Link
+              <HashLink
                 key={link.name}
                 href={link.href}
                 className="text-sm text-gray-400 hover:text-white transition-colors duration-300 relative group tracking-wide"
@@ -98,7 +99,7 @@ export default function Navbar() {
               >
                 {link.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#4167F2] group-hover:w-full transition-all duration-300" />
-              </Link>
+              </HashLink>
             ))}
             <a
               href="https://forms.gle/RM9bP4abFMBjLJTd8"
@@ -175,14 +176,14 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.08 }}
               >
-                <Link
+                <HashLink
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   className="text-xl sm:text-2xl text-white tracking-widest hover:text-[#4167F2] transition-colors"
                   style={{ fontFamily: "var(--font-michroma)" }}
                 >
                   {link.name}
-                </Link>
+                </HashLink>
               </motion.div>
             ))}
             <motion.div

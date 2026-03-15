@@ -3,6 +3,7 @@
 import AnimatedSection from "./AnimatedSection";
 import Link from "next/link";
 import Image from "next/image";
+import HashLink from "./HashLink";
 
 const footerLinks = [
   {
@@ -119,13 +120,25 @@ export default function Footer() {
               <ul className="space-y-2.5">
                 {section.links.map((link) => (
                   <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-gray-500 hover:text-[#4167F2] transition-colors duration-300"
-                      style={{ fontFamily: "var(--font-inter)" }}
-                    >
-                      {link.name}
-                    </Link>
+                    {link.href.startsWith("http") ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-gray-500 hover:text-[#4167F2] transition-colors duration-300"
+                        style={{ fontFamily: "var(--font-inter)" }}
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <HashLink
+                        href={link.href}
+                        className="text-sm text-gray-500 hover:text-[#4167F2] transition-colors duration-300"
+                        style={{ fontFamily: "var(--font-inter)" }}
+                      >
+                        {link.name}
+                      </HashLink>
+                    )}
                   </li>
                 ))}
               </ul>
