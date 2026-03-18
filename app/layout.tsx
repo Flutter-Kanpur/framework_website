@@ -58,7 +58,7 @@ export default function RootLayout({
       <body className={`${outfit.variable} ${michroma.variable}`}>
         {/* <body className={`${proxon.variable}`}> */}
         <Navbar />
-        {/* <AdModal /> */}
+        <AdModal />
         {children}
       </body>
     </html>
