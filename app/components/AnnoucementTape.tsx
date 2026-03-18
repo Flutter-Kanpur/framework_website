@@ -7,8 +7,8 @@
 //   return (
 //     // OPTIMIZATION: 'overflow-hidden' prevents the tilted tape from causing horizontal scrollbars
 //     <div className="w-full overflow-hidden pb-32 py-20 lg:py-10 bg-black ">
-      
-//       {/* OPTIMIZATION: 
+
+//       {/* OPTIMIZATION:
 //         1. translate3d(0,0,0) forces Hardware Acceleration on the animation.
 //         2. Removed mask-image styles from here and used Tailwind classes instead.
 //       */}
@@ -35,7 +35,7 @@
 //       `}</style>
 
 //       <div className="relative flex h-48 items-center justify-center">
-        
+
 //         {/* -------- TAPE 1 -------- */}
 //         {/* Changed width to 110% (smaller) and centered it explicitly to prevent layout shift */}
 //         <div className="absolute w-[110%] left-1/2 -translate-x-1/2 -rotate-12 lg:-rotate-4 ">
@@ -122,20 +122,27 @@ const Tape = () => {
   return (
     // OPTIMIZATION: 'overflow-hidden' prevents the tilted tape from causing horizontal scrollbars
     <div className="w-full overflow-hidden pb-32 py-20 lg:py-10 bg-[#00000]">
-      
       {/* OPTIMIZATION: 
         1. translate3d(0,0,0) forces Hardware Acceleration on the animation.
         2. Removed mask-image styles from here and used Tailwind classes instead.
       */}
       <style jsx>{`
         @keyframes move-left {
-          0%   { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-50%, 0, 0); }
+          0% {
+            transform: translate3d(0, 0, 0);
+          }
+          100% {
+            transform: translate3d(-50%, 0, 0);
+          }
         }
 
         @keyframes move-right {
-          0%   { transform: translate3d(-50%, 0, 0); }
-          100% { transform: translate3d(0, 0, 0); }
+          0% {
+            transform: translate3d(-50%, 0, 0);
+          }
+          100% {
+            transform: translate3d(0, 0, 0);
+          }
         }
 
         .animate-tape-left {
@@ -150,28 +157,30 @@ const Tape = () => {
       `}</style>
 
       <div className="relative flex h-48 items-center justify-center">
-        
         {/* -------- TAPE 1 -------- */}
         <div className="absolute w-[110%] left-1/2 -translate-x-1/2 -rotate-12 lg:-rotate-4 ">
           {/* Using a vibrant Flutter-style Blue */}
           <div className="bg-[#4167F2] shadow-xl">
             <div className="flex overflow-hidden md:mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)">
               <div className="flex flex-none gap-8 py-3 animate-tape-left transform-gpu">
-                {[...new Array(3)].fill(promoWords1).flat().map((word, i) => (
-                  <div key={i} className="inline-flex items-center gap-6">
-                    <span className="text-xl font-bold uppercase tracking-widest text-white whitespace-nowrap">
-                      {word}
-                    </span>
-                    {/* Using your specific logo.png */}
-                    <Image 
-                      src="/Frame 28.svg" 
-                      alt="Framework Logo" 
-                      // className="h-8 w-auto object-contain shrink-0" 
-                      width={32}
-                height={32}
-                    />
-                  </div>
-                ))}
+                {[...new Array(3)]
+                  .fill(promoWords1)
+                  .flat()
+                  .map((word, i) => (
+                    <div key={i} className="inline-flex items-center gap-6">
+                      <span className="text-xl font-bold uppercase tracking-widest text-white whitespace-nowrap">
+                        {word}
+                      </span>
+                      {/* Using your specific logo.png */}
+                      <Image
+                        src="/Frame 28.svg"
+                        alt="Framework Logo"
+                        // className="h-8 w-auto object-contain shrink-0"
+                        width={32}
+                        height={32}
+                      />
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -183,26 +192,28 @@ const Tape = () => {
           <div className="bg-[#4167F2] shadow-xl">
             <div className="flex overflow-hidden md:mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)">
               <div className="flex flex-none gap-8 py-3 animate-tape-right transform-gpu">
-                {[...new Array(3)].fill(promoWords2).flat().map((word, i) => (
-                  <div key={i} className="inline-flex items-center gap-6">
-                    <span className="text-xl font-bold uppercase tracking-widest text-white whitespace-nowrap">
-                      {word}
-                    </span>
-                    {/* Using your specific logo.png */}
-                    <Image 
-                      src="/Frame 28.svg" 
-                      alt="Framework Logo" 
-                      // className="h-8 w-auto object-contain shrink-0" 
-                      width={32}
-                height={32}
-                    />
-                  </div>
-                ))}
+                {[...new Array(3)]
+                  .fill(promoWords2)
+                  .flat()
+                  .map((word, i) => (
+                    <div key={i} className="inline-flex items-center gap-6">
+                      <span className="text-xl font-bold uppercase tracking-widest text-white whitespace-nowrap">
+                        {word}
+                      </span>
+                      {/* Using your specific logo.png */}
+                      <Image
+                        src="/Frame 28.svg"
+                        alt="Framework Logo"
+                        // className="h-8 w-auto object-contain shrink-0"
+                        width={32}
+                        height={32}
+                      />
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );
@@ -213,6 +224,7 @@ const promoWords1 = [
   "Tickets Are Live",
   "Flutter Kanpur",
   "Registrations Open",
+  "Call for Speakers 🔊",
   "Framework 2026",
   "Grab Your Spot",
   "Join The Community",
@@ -221,8 +233,9 @@ const promoWords1 = [
 const promoWords2 = [
   "Register Now",
   "Framework by Flutter Kanpur",
+  "Call for Speakers 🔊",
   "Limited Seats Available",
-  "Build With Flutter",
+  // "Build With Flutter",
   "Tickets Are Live",
   "Tech & Innovation",
 ];

@@ -489,8 +489,9 @@ export default function HeroSection() {
           </motion.a>
 
           {/* Secondary CTA */}
-          {/* <motion.a
-            href="https://konfhub.com/framework"
+          <motion.a
+            // href="https://konfhub.com/framework"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfDtrYkTZOBHuDNzwseNA4yBGP9O9LlHalp1lJtReXhABeMWA/viewform"
             whileHover={{
               scale: 1.05,
               borderColor: "rgba(65,103,242,0.5)",
@@ -500,8 +501,8 @@ export default function HeroSection() {
             className="px-7 sm:px-9 py-3.5 sm:py-4 rounded-full text-white font-bold text-sm sm:text-base tracking-wide border border-white/10 transition-colors"
             style={{ fontFamily: "var(--font-inter)" }}
           >
-            Get Conference Pass
-          </motion.a> */}
+            Call for Speaker 🔊
+          </motion.a>
         </motion.div>
 
         {/* ─── STATS BAR with parallax + staggered reveal ─── */}
