@@ -11,6 +11,7 @@ import NetworkingSection from "./components/NetworkingSection";
 import Footer from "./components/Footer";
 import AboutSection from "./components/About";
 import Tape from "./components/AnnoucementTape";
+import CallForSpeakers from "./components/CallForSpeakers";
 
 export default function Home() {
   return (
@@ -53,6 +54,8 @@ export default function Home() {
           buttonHref="#register"
         />
       </section>
+
+      <CallForSpeakers/>
 
       <SponsorsSection />
       <NetworkingSection />
