@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const STORAGE_KEY = "framework_ad_closed_at";
 const INTERVAL_MS = 45 * 60 * 1000; // 45 minutes
@@ -66,8 +67,8 @@ export default function AdModal() {
             transition={{ duration: 0.25, ease: "easeOut" }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative flex max-h-[90vh] flex-col overflow-hidden bg-black shadow-2xl outline outline-1 outline-white/5">
-              <button
+            <div className="relative flex max-h-[90vh] flex-col overflow-hidden bg-black shadow-2xl outline outline-1 outline-white/5 rounded-[10px]">
+              {/* <button
                 type="button"
                 onClick={closeModal}
                 className="absolute right-3 top-3 z-20 rounded-full p-1.5 text-white/60 transition-colors hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#66B2FF]"
@@ -86,11 +87,20 @@ export default function AdModal() {
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
-              </button>
+              </button> */}
 
               <div className="relative flex flex-1 flex-col overflow-y-auto p-8 sm:p-10">
+ <div className="relative w-full h-[180px] sm:h-[220px] rounded-xl overflow-hidden mb-6">
+  <Image
+    src="/CFS.png"
+    alt="Call For Speakers Banner"
+    fill
+    className="object-cover"
+    priority
+  />
+</div>
                 {/* ABOUT FRAMEWORK — small label with blue line */}
-                <div
+                {/* <div
                   className="mb-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest"
                   style={{
                     fontFamily: "var(--font-inter)",
@@ -102,44 +112,43 @@ export default function AdModal() {
                     style={{ backgroundColor: SECTION_BLUE }}
                   />
                   About Framework
-                </div>
+                </div> */}
+
 
                 <h2
                   id="ad-modal-title"
                   className="mb-6 text-3xl font-extrabold leading-tight text-white sm:text-4xl"
                   style={{ fontFamily: "var(--font-michroma)" }}
                 >
-                  Building a{" "}
-                  <span style={{ color: SECTION_BLUE }}>Community</span> of
-                  Innovators
+                  Call For{" "}
+                  <span style={{ color: SECTION_BLUE }}>SPEAKERS</span>
+                 {/* of Innovators */}
                 </h2>
+                <div className="h-2" />
 
                 <p
                   className="mb-4 text-base leading-relaxed text-white"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  Framework is a community-driven tech conference and hackathon
-                  designed to bring developers, innovators, and tech enthusiasts
-                  together to learn, build, and collaborate.
-                </p>
-                <p
+                  We’re inviting passionate developers, designers, and tech enthusiasts to speak at 
+                {/* </p> */}
+                {/* {/* <p
                   className="mb-4 text-base leading-relaxed text-white"
                   style={{ fontFamily: "var(--font-inter)" }}
-                >
-                  Organized by the{" "}
+                > */}
+                  {" "}
                   <span className="font-semibold text-white">
-                    Flutter Kanpur Community
+                    Framework 1.0, Flutter Kanpur’s. 
                   </span>
-                  , the event features insightful talks from industry experts,
-                  hands-on sessions, and an exciting hackathon where participants
-                  can turn ideas into real solutions. Framework aims to create a
-                  space where technology, creativity, and community come
-                  together to inspire the next generation of builders.
+                  </p>
+                  <p>
+                  If you have insights, experiences, or ideas to share across topics like Flutter, Backend, Cloud, AI/ML, or career growth, this is your chance to inspire and connect with a vibrant developer community. Submit your session proposal and be part of an event focused on learning, innovation, and collaboration
                 </p>
 
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row justify-between">
                   <a
-                    href="#about"
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfDtrYkTZOBHuDNzwseNA4yBGP9O9LlHalp1lJtReXhABeMWA/viewform"
+                    target="_blank"
                     onClick={closeModal}
                     className="rounded-lg px-5 py-3 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90"
                     style={{
@@ -147,7 +156,7 @@ export default function AdModal() {
                       backgroundColor: SECTION_BLUE,
                     }}
                   >
-                    Learn more
+                    Apply Now
                   </a>
                   <button
                     type="button"
