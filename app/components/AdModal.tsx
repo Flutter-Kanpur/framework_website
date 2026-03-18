@@ -95,7 +95,7 @@ export default function AdModal() {
     src="/CFS.png"
     alt="Call For Speakers Banner"
     fill
-    className="object-cover"
+    className="object-contain"
     priority
   />
 </div>
