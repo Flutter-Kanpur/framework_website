@@ -36,7 +36,7 @@ export default function Home() {
         subtext="Registrations for our 10hr hackathon are dropping soon. Stay tuned!"
         buttonText="Coming Soon"
         isDisabled={true}
-        comingSoonDate="2026-03-20T10:00:00"
+        comingSoonDate="2026-03-21T00:00:00"
       />
 
       {/* about section to be added here */}
@@ -55,7 +55,7 @@ export default function Home() {
         />
       </section>
 
-      <CallForSpeakers/>
+      <CallForSpeakers />
 
       <SponsorsSection />
       <NetworkingSection />
