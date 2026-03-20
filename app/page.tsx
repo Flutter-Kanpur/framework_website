@@ -58,7 +58,7 @@ export default function Home() {
       <CallForSpeakers />
 
       <SponsorsSection />
-      <NetworkingSection />
+      {/* <NetworkingSection /> */}
       {/* <LocationSection /> */}
       {/* <RegisterForm /> */}
 

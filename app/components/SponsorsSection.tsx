@@ -26,8 +26,9 @@ const sponsorTiers = [
     layoutClass: "max-w-5xl",
     cardClass:
       "w-full sm:w-[320px] py-8 md:py-10 min-h-[120px] text-lg md:text-2xl",
-    hoverEffect:
-      "hover:border-[#FFD700] hover:shadow-[0_0_25px_rgba(255,215,0,0.15)] text-gray-500 hover:text-[#FFD700]",
+hoverEffect:
+  "text-gray-500 hover:text-[#FFD700] hover:border-[#FFD700] hover:shadow-[0_0_25px_rgba(255,215,0,0.15)] " +
+  "max-[425px]:text-[#FFD700] max-[425px]:border-[#FFD700] max-[425px]:shadow-[0_0_25px_rgba(255,215,0,0.15)]",
     sponsors: [
       { name: "Shorebird", logo: "/logo/shorebird.svg", width: 40, height: 40 },
       { name: "Google", logo: "/logo/google.svg", width: 48, height: 48 },
@@ -40,8 +41,9 @@ const sponsorTiers = [
     // 2-up on mobile, fixed width on desktop
     cardClass:
       "w-[calc(50%-0.5rem)] sm:w-[240px] py-6 md:py-8 min-h-[100px] text-base md:text-xl",
-    hoverEffect:
-      "hover:border-[#C0C0C0] hover:shadow-[0_0_20px_rgba(192,192,192,0.15)] text-gray-500 hover:text-[#C0C0C0]",
+hoverEffect:
+  "text-gray-500 hover:text-[#C0C0C0] hover:border-[#C0C0C0] hover:shadow-[0_0_20px_rgba(192,192,192,0.15)] " +
+  "max-[425px]:text-[#C0C0C0] max-[425px]:border-[#C0C0C0] max-[425px]:shadow-[0_0_20px_rgba(192,192,192,0.15)]",
     sponsors: [
       {
         name: "AI Jalander",
@@ -143,7 +145,7 @@ export default function SponsorsSection() {
                         alt={`${sponsor.name} Logo`}
                         width={sponsor.width}
                         height={sponsor.height}
-                        className="object-contain opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                        className="object-contain opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 max-[425px]:grayscale-0 max-[425px]:opacity-100 transition-all duration-500"
                       />
                       <span
                         className="font-bold tracking-wider transition-colors duration-300"
