@@ -51,7 +51,7 @@ hoverEffect:
         width: 32,
         height: 32,
       },
-      // { name: "Zomato", logo: "/logos/zomato.svg", width: 32, height: 32 },
+      { name: "GDG Lucknow", logo: "/logo/gdgLucknow.jpeg", width: 32, height: 32 },
       // { name: "Swiggy", logo: "/logos/swiggy.svg", width: 32, height: 32 },
       // { name: "Jio", logo: "/logos/jio.svg", width: 32, height: 32 },
     ],
