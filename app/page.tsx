@@ -5,14 +5,14 @@ import CTABanner from "./components/CTABanner";
 import TracksSection from "./components/TracksSection";
 // import ScheduleSection from "./components/ScheduleSection";
 import SponsorsSection from "./components/SponsorsSection";
-import NetworkingSection from "./components/NetworkingSection";
+// import NetworkingSection from "./components/NetworkingSection";
 // import LocationSection from "./components/LocationSection";
 // import RegisterForm from "./components/RegisterForm";
 import Footer from "./components/Footer";
 import AboutSection from "./components/About";
 import Tape from "./components/AnnoucementTape";
 import CallForSpeakers from "./components/CallForSpeakers";
-import HackathonSection from "./components/Hackathon";
+// import HackathonSection from "./components/Hackathon";
 
 
 
