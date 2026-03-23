@@ -35,38 +35,43 @@ hoverEffect:
       { name: "Flutter", logo: "/logo/flutter.svg", width: 48, height: 48 },
     ],
   },
+//   {
+//     tierName: "Community Partners",
+//     layoutClass: "max-w-6xl",
+//     // 2-up on mobile, fixed width on desktop
+//     cardClass:
+//       "w-[calc(50%-0.5rem)] sm:w-[300px] py-6 md:py-8 min-h-[100px] text-base md:text-xl",
+// hoverEffect:
+//   "text-gray-500 hover:text-[#C0C0C0] hover:border-[#C0C0C0] hover:shadow-[0_0_20px_rgba(192,192,192,0.15)] " +
+//   "max-[425px]:text-white max-[425px]:border-[#C0C0C0] max-[425px]:shadow-[0_0_20px_rgba(192,192,192,0.15)]",
+//     sponsors: [
+//       {
+//         name: "AI Jalander",
+//         logo: "/logo/jalandhar.png",
+//         width: 32,
+//         height: 32,
+//       },
+//       { name: "GDG Lucknow", logo: "/logo/gdgLucknow.jpeg", width: 32, height: 32 },
+//       { name: "FFSC India", logo: "/logo/FFSCIndia.png", width: 32, height: 32 },
+//       // { name: "Jio", logo: "/logos/jio.svg", width: 32, height: 32 },
+//     ],
+//   },
+];
+
+/* Marquee Sponsors for lower tier/community partners */
+const communityPartners = [
   {
-    tierName: "Community Partners",
-    layoutClass: "max-w-6xl",
-    // 2-up on mobile, fixed width on desktop
-    cardClass:
-      "w-[calc(50%-0.5rem)] sm:w-[240px] py-6 md:py-8 min-h-[100px] text-base md:text-xl",
-hoverEffect:
-  "text-gray-500 hover:text-[#C0C0C0] hover:border-[#C0C0C0] hover:shadow-[0_0_20px_rgba(192,192,192,0.15)] " +
-  "max-[425px]:text-white max-[425px]:border-[#C0C0C0] max-[425px]:shadow-[0_0_20px_rgba(192,192,192,0.15)]",
-    sponsors: [
-      {
         name: "AI Jalander",
         logo: "/logo/jalandhar.png",
         width: 32,
         height: 32,
       },
       { name: "GDG Lucknow", logo: "/logo/gdgLucknow.jpeg", width: 32, height: 32 },
-      // { name: "Swiggy", logo: "/logos/swiggy.svg", width: 32, height: 32 },
-      // { name: "Jio", logo: "/logos/jio.svg", width: 32, height: 32 },
-    ],
-  },
+      { name: "FFSC India", logo: "/logo/FFSCIndia.png", width: 32, height: 32 },
+  { name: "Foss united Kanpur", logo: "/logo/foss.png" , width: 28, height: 28 },
+  { name: "AWS UG Kanpur", logo: "/logo/awskanpur.png", width: 28, height: 28 },
+  { name: "CNCF Kanpur", logo: "/logo/cncfkanpur.webp", width: 28, height: 28 },
 ];
-
-/* Marquee Sponsors for lower tier/community partners */
-// const communityPartners = [
-//   { name: "Flutter", logo: "/logos/flutter.svg", width: 28, height: 28 },
-//   // { name: "GitHub", logo: "/logos/github.svg", width: 28, height: 28 },
-//   // { name: "Notion", logo: "/logos/notion.svg", width: 28, height: 28 },
-//   // { name: "Figma", logo: "/logos/figma.svg" , width: 28, height: 28 },
-//   // { name: "Paytm", logo: "/logos/paytm.svg", width: 28, height: 28 },
-//   // { name: "CRED", logo: "/logos/cred.svg", width: 28, height: 28 },
-// ];
 
 export default function SponsorsSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -160,53 +165,50 @@ export default function SponsorsSection() {
             </AnimatedSection>
           ))}
         </div>
-      </div>
-    </section>
+
+
+
+        <AnimatedSection className="w-full">
+          <h3
+            className="text-center text-[10px] sm:text-xs tracking-[0.2em] text-gray-500 uppercase mb-8"
+            style={{ fontFamily: "var(--font-michroma)" }}
+          >
+            Community Partners
+          </h3>
+          <div className="relative overflow-hidden w-full">
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+
+            {/* Marquee track */}
+            <div className="flex animate-marquee whitespace-nowrap hover:[animation-play-state:paused]">
+              {[...communityPartners, ...communityPartners].map((sponsor, i) => (
+                <div
+                  key={i}
+                  className="mx-4 sm:mx-6 px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center w-auto px-4 sm:px-6 hover:border-[#4167F2]/40 transition-all duration-300 group cursor-pointer hover:shadow-[0_0_15px_rgba(65,103,242,0.15)]"
+                >
+                  {/* Flex row for Marquee Image + Text */}
+                  <div className="flex items-center justify-center gap-3">
+                    <Image
+                      src={sponsor.logo}
+                      alt={`${sponsor.name} Logo`}
+                      width={sponsor.width}
+                      height={sponsor.height}
+                      className="object-contain opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
+                    />
+                    <span
+                      className="text-sm sm:text-base font-bold text-gray-500 group-hover:text-[#4167F2] transition-colors duration-300 tracking-wider"
+                      style={{ fontFamily: "var(--font-michroma)" }}
+                    >
+                      {sponsor.name}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+        </div>
+</section>
   );
 }
-
-//         <AnimatedSection className="w-full">
-//           <h3
-//             className="text-center text-[10px] sm:text-xs tracking-[0.2em] text-gray-500 uppercase mb-8"
-//             style={{ fontFamily: "var(--font-michroma)" }}
-//           >
-//             Community Partners
-//           </h3>
-//           <div className="relative overflow-hidden w-full">
-//             {/* Fade edges */}
-//             <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-//             <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
-
-//             {/* Marquee track */}
-//             <div className="flex animate-marquee whitespace-nowrap hover:[animation-play-state:paused]">
-//               {[...communityPartners, ...communityPartners].map((sponsor, i) => (
-//                 <div
-//                   key={i}
-//                   className="mx-4 sm:mx-6 px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-white/5 bg-white/[0.02] flex items-center justify-center min-w-[160px] sm:min-w-[200px] hover:border-[#4167F2]/40 transition-all duration-300 group cursor-pointer hover:shadow-[0_0_15px_rgba(65,103,242,0.15)]"
-//                 >
-//                   {/* Flex row for Marquee Image + Text */}
-//                   <div className="flex items-center justify-center gap-3">
-//                     <Image
-//                       src={sponsor.logo}
-//                       alt={`${sponsor.name} Logo`}
-//                       width={sponsor.width}
-//                       height={sponsor.height}
-//                       className="object-contain opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
-//                     />
-//                     <span
-//                       className="text-sm sm:text-base font-bold text-gray-500 group-hover:text-[#4167F2] transition-colors duration-300 tracking-wider"
-//                       style={{ fontFamily: "var(--font-michroma)" }}
-//                     >
-//                       {sponsor.name}
-//                     </span>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         </AnimatedSection>
-
-//       </div>
-//     </section>
-//   );
-// }
