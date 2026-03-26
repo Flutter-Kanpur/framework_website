@@ -4,29 +4,29 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const days = [
-  { label: "Day 1", date: "March 15, 2026" },
-  { label: "Day 2", date: "March 16, 2026" },
+  { label: "Day 1", date: "April 24, 2026" },
+  // { label: "Day 2", date: "April 25, 2026" },
 ];
 
 const schedule: Record<string, { time: string; title: string; speaker: string; type: string }[]> = {
   "Day 1": [
-    { time: "09:00", title: "Opening Ceremony & Keynote", speaker: "Ravi Sharma", type: "Keynote" },
-    { time: "10:30", title: "Building Scalable Architecture", speaker: "Arjun Mehta", type: "Talk" },
+    { time: "08:00", title: "Opening Ceremony & Keynote", speaker: "Drishtan Ranjan Srivastava", type: "Keynote" },
+    { time: "08:30", title: "Hackathon Start", speaker: "", type: "Hackathon" },
     { time: "12:00", title: "Lunch & Networking", speaker: "", type: "Break" },
-    { time: "13:00", title: "Hackathon Kickoff — Team Formation", speaker: "", type: "Hackathon" },
-    { time: "14:30", title: "Design Systems & Material 3", speaker: "Ananya Joshi", type: "Workshop" },
-    { time: "16:00", title: "State Management Deep Dive", speaker: "Priya Patel", type: "Talk" },
-    { time: "17:30", title: "Day 1 Wrap & Evening Mixer", speaker: "", type: "Social" },
+    { time: "13:00", title: "First Mentor Session & Evaluation", speaker: "", type: "Evaluation" },
+    { time: "17:30", title: "Second Mentor Session & Evaluation", speaker: "", type: "Evaluation" },
+    { time: "18:30", title: "Hackathon End", speaker: "", type: "Hackathon" },
+    { time: "20:00", title: "Prize Distribution & Day 1 Wrap", speaker: "", type: "Prize" },
   ],
-  "Day 2": [
-    { time: "09:00", title: "AI/ML Integration Hands-on", speaker: "Sneha Gupta", type: "Workshop" },
-    { time: "10:30", title: "Cross-Platform & Desktop Dev", speaker: "Vikram Singh", type: "Talk" },
-    { time: "12:00", title: "Lunch Break", speaker: "", type: "Break" },
-    { time: "13:00", title: "Hackathon — Final Sprint", speaker: "", type: "Hackathon" },
-    { time: "15:00", title: "Project Demos & Judging", speaker: "", type: "Hackathon" },
-    { time: "16:30", title: "Panel: Future of Tech in India", speaker: "All Speakers", type: "Panel" },
-    { time: "17:30", title: "Awards Ceremony & Closing", speaker: "", type: "Keynote" },
-  ],
+  // "Day 2": [
+  //   { time: "09:00", title: "AI/ML Integration Hands-on", speaker: "Sneha Gupta", type: "Workshop" },
+  //   { time: "10:30", title: "Cross-Platform & Desktop Dev", speaker: "Vikram Singh", type: "Talk" },
+  //   { time: "12:00", title: "Lunch Break", speaker: "", type: "Break" },
+  //   { time: "13:00", title: "Hackathon — Final Sprint", speaker: "", type: "Hackathon" },
+  //   { time: "15:00", title: "Project Demos & Judging", speaker: "", type: "Hackathon" },
+  //   { time: "16:30", title: "Panel: Future of Tech in India", speaker: "All Speakers", type: "Panel" },
+  //   { time: "17:30", title: "Awards Ceremony & Closing", speaker: "", type: "Keynote" },
+  // ],
 };
 
 const typeConfig: Record<string, { color: string; bg: string }> = {
@@ -56,7 +56,7 @@ export default function ScheduleSection() {
   });
 
   // 2. Build the S-Curve Path dynamically based on item count
-  const ITEM_SPACING = 300; // Vertical distance between items
+  const ITEM_SPACING = 380; // Vertical distance between items
   const totalHeight = items.length * ITEM_SPACING;
   const width = 600; // SVG coordinate width
   
@@ -72,13 +72,13 @@ export default function ScheduleSection() {
   });
 
   return (
-    <section id="schedule" className="py-20 bg-[#050505] text-white overflow-hidden">
+    <section id="schedule" className="py-20 bg-[#000000] text-white overflow-hidden">
       <div className="max-w-5xl mx-auto px-6">
         
         {/* Header Section */}
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-black mb-6" style={{ fontFamily: "var(--font-michroma)" }}>
-            SCHEDULE
+            Day 1 SCHEDULE
           </h2>
           
           {/* Day Tabs */}
@@ -100,7 +100,7 @@ export default function ScheduleSection() {
         </div>
 
         {/* Timeline Content */}
-        <div ref={containerRef} className="relative" style={{ height: totalHeight + 100 }}>
+        <div ref={containerRef} className="relative" style={{ height: totalHeight + 200 }}>
           
           {/* SVG Journey Path */}
           <svg
@@ -113,7 +113,7 @@ export default function ScheduleSection() {
             <motion.path
               d={pathData}
               stroke="#4167F2"
-              strokeWidth="4"
+              strokeWidth="5"
               strokeLinecap="round"
               style={{ pathLength }}
             />

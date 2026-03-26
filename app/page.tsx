@@ -3,7 +3,7 @@ import FrameworkScrollSection from "./components/FrameworkScrollSection";
 // import SpeakersSection from "./components/SpeakersSection";
 import CTABanner from "./components/CTABanner";
 import TracksSection from "./components/TracksSection";
-// import ScheduleSection from "./components/ScheduleSection";
+import ScheduleSection from "./components/ScheduleSection";
 import SponsorsSection from "./components/SponsorsSection";
 // import NetworkingSection from "./components/NetworkingSection";
 // import LocationSection from "./components/LocationSection";
@@ -12,21 +12,21 @@ import Footer from "./components/Footer";
 import AboutSection from "./components/About";
 import Tape from "./components/AnnoucementTape";
 import CallForSpeakers from "./components/CallForSpeakers";
-// import HackathonSection from "./components/Hackathon";
+import HackathonSection from "./components/Hackathon";
 
 
 
-// const hackathonData = {
-//   title: "Build With Framework",
-//   tagline: "Build What <Matters>",
-//   description:"Build With Hackathon is a high-energy innovation event where developers, designers, and tech enthusiasts come together to build impactful solutions within a limited time. Participants will collaborate, brainstorm, and turn their ideas into real working products during an intense 10-hour development sprint.The hackathon is designed to encourage creativity, problem-solving, and rapid execution, providing a platform to showcase skills, learn new technologies, and connect with like-minded innovators. Whether you're a beginner or an experienced builder, this is your chance to create, compete, and make something meaningful.",
-//   date: "24 April 2026",
-//   duration: "10 Hours",
-//   location: "Kanpur, India",
-//   prize: "₹20,000+",
-//   themes: ["Smart Recruitment"],
-//   image: "/images/hackathon.jpg",
-// };
+const hackathonData = {
+  title: "Build With Framework",
+  tagline: "Build What <Matters>",
+  description:"Build With Hackathon is a high-energy innovation event where developers, designers, and tech enthusiasts come together to build impactful solutions within a limited time. Participants will collaborate, brainstorm, and turn their ideas into real working products during an intense 10-hour development sprint.The hackathon is designed to encourage creativity, problem-solving, and rapid execution, providing a platform to showcase skills, learn new technologies, and connect with like-minded innovators. Whether you're a beginner or an experienced builder, this is your chance to create, compete, and make something meaningful.",
+  date: "24 April 2026",
+  duration: "10 Hours",
+  location: "Kanpur, India",
+  prize: "₹20,000+",
+  themes: ["Smart Recruitment"],
+  image: "/hackathon1.svg",
+};
 
 export default function Home() {
   return (
@@ -56,11 +56,11 @@ export default function Home() {
 
       {/* about section to be added here */}
 
-  {/* <HackathonSection hackathon={hackathonData} />; */}
-
+   <HackathonSection hackathon={hackathonData} />; 
+<ScheduleSection />
 
       <TracksSection />
-      {/* <ScheduleSection /> */}
+      
 
       {/* CTA 2: After schedule */}
       <section id="project-idea" className="scroll-mt-20">
@@ -69,7 +69,7 @@ export default function Home() {
           heading="Got a Project Idea?"
           subtext="Form your team, pick a track, and bring your vision to life at the hackathon."
           buttonText="Submit Your Idea"
-          buttonHref="#register"
+          buttonHref="https://framework.devfolio.co/overview"
         />
       </section>
 

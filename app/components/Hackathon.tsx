@@ -341,6 +341,196 @@
 
 // export default HackathonSection;
 
+// "use client";
+
+// import React, { useRef } from "react";
+// import Image from "next/image";
+// import { motion, useScroll, useTransform } from "framer-motion";
+
+// type Hackathon = {
+//   title: string;
+//   tagline: string;
+//   description: string;
+//   date: string;
+//   duration: string;
+//   location: string;
+//   prize: string;
+//   themes: string[];
+//   image?: string;
+// };
+
+// type Props = {
+//   hackathon: Hackathon;
+// };
+
+// const HackathonSection: React.FC<Props> = ({ hackathon }) => {
+//   const ref = useRef<HTMLElement | null>(null);
+
+//   const { scrollYProgress } = useScroll({
+//     target: ref,
+//     offset: ["start end", "end start"],
+//   });
+
+//   const headingY = useTransform(scrollYProgress, [0, 0.3], [50, 0]);
+//   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
+
+//   const primaryTheme = hackathon.themes[0] || "Open Theme";
+
+//   return (
+//     <section
+//       ref={ref}
+//       className="w-full py-20 px-6 md:px-12 bg-[#030303] text-white relative overflow-hidden"
+//     >
+//       {/* Background Glow */}
+//       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 blur-[150px] rounded-full pointer-events-none" />
+
+//       <div className="max-w-6xl mx-auto relative z-10">
+        
+//         {/* --- HEADING --- */}
+//         <motion.div
+//           style={{ y: headingY, opacity: headingOpacity }}
+//           className="text-center mb-16"
+//         >
+//           <span
+//             className="text-[10px] sm:text-xs tracking-[0.3em] text-[#4167F2] uppercase mb-4 block font-semibold"
+//             style={{ fontFamily: "var(--font-michroma, sans-serif)" }}
+//           >
+//             Hackathon
+//           </span>
+
+//           <h2
+//             className="text-3xl sm:text-4xl md:text-6xl text-white mb-4 tracking-wide font-bold"
+//             style={{ fontFamily: "var(--font-michroma, sans-serif)" }}
+//           >
+//             {hackathon.title}
+//           </h2>
+
+//           <div
+//             className="w-24 h-[2px] mx-auto rounded-full shadow-[0_0_15px_#4167F2]"
+//             style={{
+//               background: "linear-gradient(90deg, transparent, #4167F2, transparent)",
+//             }}
+//           />
+
+//           <p
+//             className="mt-6 text-gray-400 text-sm sm:text-lg max-w-lg mx-auto tracking-wide"
+//             style={{ fontFamily: "var(--font-inter, sans-serif)" }}
+//           >
+//             {hackathon.tagline}
+//           </p>
+//         </motion.div>
+
+//         {/* --- MAIN CONTENT CARD --- */}
+//         <div className="bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-6 md:p-10 backdrop-blur-md shadow-2xl flex flex-col gap-10">
+          
+//           {/* Top Section: Image (Left) + About (Right) */}
+//           <div className="grid lg:grid-cols-2 gap-10 items-center">
+            
+// {/* Image Box */}
+//             <div className="relative h-[280px] sm:h-[350px] aspect-[2/3] shrink-0 rounded-2xl overflow-hidden group border border-white/10 bg-white/5">
+//               {hackathon.image ? (
+//                 <Image
+//                   src={hackathon.image}
+//                   alt={hackathon.title}
+//                   fill
+//                   className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out"
+//                 />
+//               ) : (
+//                 <div className="w-full h-full flex items-center justify-center text-gray-500 font-mono text-sm tracking-widest text-center p-4">
+//                   [ IMAGE PLACEHOLDER ]
+//                 </div>
+//               )}
+//             </div>
+
+//             {/* About Box */}
+//             <div className="space-y-6">
+//               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/30 text-blue-400 text-xs sm:text-sm font-medium tracking-wide">
+//                 <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+//                 Featured Theme: {primaryTheme}
+//               </div>
+              
+//               <h3 className="text-2xl sm:text-3xl font-semibold text-white">About the Event</h3>
+//               <p className="text-gray-400 leading-relaxed text-sm sm:text-base md:text-lg">
+//                 {hackathon.description}
+//               </p>
+//             </div>
+//           </div>
+
+//           <hr className="border-white/10 w-full" />
+
+//           {/* Bottom Section: Details + Buttons */}
+//           <div className="space-y-10">
+            
+//             {/* Details Grid (4 columns on Desktop, 2 on Mobile) */}
+//             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+//               <DetailItem icon={<CalendarIcon />} label="Date" value={hackathon.date} />
+//               <DetailItem icon={<ClockIcon />} label="Duration" value={hackathon.duration} />
+//               <DetailItem icon={<LocationIcon />} label="Location" value={hackathon.location} />
+//               <DetailItem icon={<TrophyIcon />} label="Prize Pool" value={hackathon.prize} />
+//             </div>
+
+//             {/* Action Buttons */}
+//             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+//             <a
+//               href="https://forms.gle/RM9bP4abFMBjLJTd8"
+//               target="_blank"
+//               rel="noopener noreferrer"
+//               className="ml-2 px-20 py-5 text-m font-medium text-white rounded-full transition-all duration-300 hover:shadow-[0_0_25px_rgba(65,103,242,0.5)]"
+//               style={{
+//                 background: "linear-gradient(135deg, #4167F2, #6B8BF5)",
+//                 fontFamily: "var(--font-inter)",
+//               }}
+//             >
+//               Register Now
+//             </a>
+//               {/* <button className="px-10 py-4 border border-white/20 text-white hover:bg-white/5 rounded-xl font-medium transition-all flex items-center justify-center">
+//                 View Details
+//               </button> */}
+//             </div>
+
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// // --- HELPER COMPONENT FOR GRID ITEMS ---
+// const DetailItem = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) => (
+//   <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-colors">
+//     <div className="mb-3 p-3 rounded-full bg-blue-600/10 text-[#4167F2] inline-flex">
+//       {icon}
+//     </div>
+//     <p className="text-xs text-gray-500 uppercase tracking-widest mb-1.5">{label}</p>
+//     <p className="font-semibold text-gray-100 text-sm sm:text-base">{value}</p>
+//   </div>
+// );
+
+// // --- CLEAN SVG ICONS ---
+// const CalendarIcon = () => (
+//   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+//   </svg>
+// );
+// const ClockIcon = () => (
+//   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+//   </svg>
+// );
+// const LocationIcon = () => (
+//   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+//     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+//   </svg>
+// );
+// const TrophyIcon = () => (
+//   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+//     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+//   </svg>
+// );
+
+// export default HackathonSection;
+
 "use client";
 
 import React, { useRef } from "react";
@@ -355,7 +545,7 @@ type Hackathon = {
   duration: string;
   location: string;
   prize: string;
-  themes: string[];
+  themes?: string[];
   image?: string;
 };
 
@@ -374,7 +564,7 @@ const HackathonSection: React.FC<Props> = ({ hackathon }) => {
   const headingY = useTransform(scrollYProgress, [0, 0.3], [50, 0]);
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
 
-  const primaryTheme = hackathon.themes[0] || "Open Theme";
+  const primaryTheme = hackathon?.themes?.[0] || "Open Theme";
 
   return (
     <section
@@ -421,29 +611,30 @@ const HackathonSection: React.FC<Props> = ({ hackathon }) => {
         </motion.div>
 
         {/* --- MAIN CONTENT CARD --- */}
-        <div className="bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-6 md:p-10 backdrop-blur-md shadow-2xl flex flex-col gap-10">
+        <div className="bg-[#0a0a0a]/80 border border-white/10 rounded-3xl p-6 md:p-10 backdrop-blur-md shadow-2xl flex flex-col gap-10 lg:gap-12">
           
           {/* Top Section: Image (Left) + About (Right) */}
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
             
             {/* Image Box */}
-            <div className="relative w-full h-[280px] sm:h-[350px] rounded-2xl overflow-hidden group border border-white/5 bg-white/5">
+        <div className="w-[400px] sm:w-[450px] md:w-[480px] shrink-0 rounded-2xl overflow-hidden border border-white/10 bg-white/5 mx-auto lg:mx-0 shadow-xl">
               {hackathon.image ? (
-                <Image
-                  src={hackathon.image}
-                  alt={hackathon.title}
-                  fill
-                  className="object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out"
-                />
+  <Image
+    src={hackathon.image}
+    alt={hackathon.title}
+    width={320}
+    height={480}
+    className="w-full h-auto object-contain"
+  />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-gray-500 font-mono text-sm tracking-widest">
+                <div className="w-full h-full flex items-center justify-center text-gray-500 font-mono text-sm tracking-widest text-center p-4">
                   [ IMAGE PLACEHOLDER ]
                 </div>
               )}
             </div>
 
             {/* About Box */}
-            <div className="space-y-6">
+            <div className="space-y-6 flex-1 max-w-xl text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/30 text-blue-400 text-xs sm:text-sm font-medium tracking-wide">
                 <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                 Featured Theme: {primaryTheme}
@@ -462,30 +653,27 @@ const HackathonSection: React.FC<Props> = ({ hackathon }) => {
           <div className="space-y-10">
             
             {/* Details Grid (4 columns on Desktop, 2 on Mobile) */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               <DetailItem icon={<CalendarIcon />} label="Date" value={hackathon.date} />
               <DetailItem icon={<ClockIcon />} label="Duration" value={hackathon.duration} />
               <DetailItem icon={<LocationIcon />} label="Location" value={hackathon.location} />
-              <DetailItem icon={<TrophyIcon />} label="Prize Pool" value={hackathon.prize} />
+              <DetailItem icon={<SparklesIcon />} label="Prize Pool" value={hackathon.prize} />
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="https://forms.gle/RM9bP4abFMBjLJTd8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-2 px-20 py-5 text-m font-medium text-white rounded-full transition-all duration-300 hover:shadow-[0_0_25px_rgba(65,103,242,0.5)]"
-              style={{
-                background: "linear-gradient(135deg, #4167F2, #6B8BF5)",
-                fontFamily: "var(--font-inter)",
-              }}
-            >
-              Register Now
-            </a>
-              {/* <button className="px-10 py-4 border border-white/20 text-white hover:bg-white/5 rounded-xl font-medium transition-all flex items-center justify-center">
-                View Details
-              </button> */}
+            <div className="flex justify-center pt-2">
+              <a
+                href="https://framework.devfolio.co/overview"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-12 sm:px-20 py-4 sm:py-5 text-base font-medium text-white rounded-full transition-all duration-300 hover:shadow-[0_0_25px_rgba(65,103,242,0.5)] hover:-translate-y-1"
+                style={{
+                  background: "linear-gradient(135deg, #4167F2, #6B8BF5)",
+                  fontFamily: "var(--font-inter, sans-serif)",
+                }}
+              >
+                Register Now
+              </a>
             </div>
 
           </div>
@@ -497,7 +685,7 @@ const HackathonSection: React.FC<Props> = ({ hackathon }) => {
 
 // --- HELPER COMPONENT FOR GRID ITEMS ---
 const DetailItem = ({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) => (
-  <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-colors">
+  <div className="flex flex-col items-center justify-center text-center p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-colors h-full">
     <div className="mb-3 p-3 rounded-full bg-blue-600/10 text-[#4167F2] inline-flex">
       {icon}
     </div>
@@ -523,7 +711,7 @@ const LocationIcon = () => (
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
   </svg>
 );
-const TrophyIcon = () => (
+const SparklesIcon = () => (
   <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
   </svg>
