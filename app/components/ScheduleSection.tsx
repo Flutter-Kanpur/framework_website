@@ -4,19 +4,22 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
 const days = [
-  { label: "Day 1", date: "April 24, 2026" },
+  { label: "Timeline", date: "April 24, 2026" },
   // { label: "Day 2", date: "April 25, 2026" },
 ];
 
 const schedule: Record<string, { time: string; title: string; speaker: string; type: string }[]> = {
-  "Day 1": [
-    { time: "08:00", title: "Opening Ceremony & Keynote", speaker: "Drishtan Ranjan Srivastava", type: "Keynote" },
-    { time: "08:30", title: "Hackathon Start", speaker: "", type: "Hackathon" },
-    { time: "12:00", title: "Lunch & Networking", speaker: "", type: "Break" },
-    { time: "13:00", title: "First Mentor Session & Evaluation", speaker: "", type: "Evaluation" },
-    { time: "17:30", title: "Second Mentor Session & Evaluation", speaker: "", type: "Evaluation" },
-    { time: "18:30", title: "Hackathon End", speaker: "", type: "Hackathon" },
-    { time: "20:00", title: "Prize Distribution & Day 1 Wrap", speaker: "", type: "Prize" },
+  "Timeline": [
+    { time: "Till 15 April", title: "Registration Open", speaker: "", type: "Registration" },
+    { time: "10 Apr - 15 Apr", title: "Idea Submission Phase", speaker: "", type: "Submission" },
+    { time: "16 Apr - 20 Apr", title: "Pre-Evaluation Phase", speaker: "", type: "Evaluation" },
+    { time: "20 Apr", title: "Announcement of Selected Teams(offline Hackathon)", speaker: "", type: "Announcement" },
+    { time: "24 Apr", title: "Day of Hackathon", speaker: " ", type: "Keynote" },
+    // { time: "24 Apr, 08:30", title: "Hackathon Start", speaker: "", type: "Hackathon" },
+    // { time: "24 Apr, 12:00", title: "Prize Distribution & Day 1 Wrap", speaker: "", type: "Prize" },
+    // { time: "24 Apr, 13:00", title: "Mentor Session & Evaluation", speaker: "", type: "Evaluation" },
+    // { time: "24 Apr, 18:00", title: "Hackathon End", speaker: "", type: "Hackathon" },
+    // { time: "24 Apr, 18:30", title: "Prize Distribution & Wrap-Up", speaker: "", type: "Prize" },
   ],
   // "Day 2": [
   //   { time: "09:00", title: "AI/ML Integration Hands-on", speaker: "Sneha Gupta", type: "Workshop" },
@@ -40,7 +43,7 @@ const typeConfig: Record<string, { color: string; bg: string }> = {
 };
 
 export default function ScheduleSection() {
-  const [activeDay, setActiveDay] = useState("Day 1");
+  const [activeDay, setActiveDay] = useState("Timeline");
   const containerRef = useRef<HTMLDivElement>(null);
   const items = schedule[activeDay];
 
@@ -78,7 +81,7 @@ export default function ScheduleSection() {
         {/* Header Section */}
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-black mb-6" style={{ fontFamily: "var(--font-michroma)" }}>
-            Day 1 SCHEDULE
+            HACKATHON SCHEDULE
           </h2>
           
           {/* Day Tabs */}
@@ -138,7 +141,7 @@ export default function ScheduleSection() {
                className="bg-[#0A0A0A] border border-white/10 p-8 rounded-[32px] text-center"
              >
                 <h3 className="text-xl font-bold mb-2">Destination Reached</h3>
-                <p className="text-gray-500 text-sm mb-6">Day {activeDay === "Day 1" ? '1' : '2'} itinerary completed.</p>
+                <p className="text-gray-500 text-sm mb-6">Day {activeDay === "Timeline" ? '1' : '2'} itinerary completed.</p>
                 <button 
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   className="bg-[#4167F2] text-white px-6 py-2 rounded-xl text-sm font-bold"

@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const STORAGE_KEY = "framework_ad_closed_at";
-const INTERVAL_MS = 45 * 60 * 1000; // 45 minutes
+const INTERVAL_MS = 1 * 60 * 1000; // 45 minutes
 const SECTION_BLUE = "#66B2FF";
 
 export default function AdModal() {
@@ -89,16 +89,21 @@ export default function AdModal() {
                 </svg>
               </button> */}
 
-              <div className="relative flex flex-1 flex-col overflow-y-auto p-8 sm:p-10">
- <div className="relative w-full h-[180px] sm:h-[220px] rounded-xl overflow-hidden mb-6">
-  <Image
-    src="/CFS.png"
-    alt="Call For Speakers Banner"
-    fill
-    className="object-contain"
-    priority
-  />
-</div>
+<div className="relative flex flex-1 flex-col overflow-y-auto p-8 sm:p-10">
+
+  <div className="relative w-full mb-6">
+    <Image
+      src="/hackathon1.svg"
+      alt="Hackathon Banner"
+      width={1200}
+      height={400}
+      className="w-full h-auto object-contain rounded-xl"
+      priority
+    />
+  </div>
+
+
+
                 {/* ABOUT FRAMEWORK — small label with blue line */}
                 {/* <div
                   className="mb-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest"
@@ -120,8 +125,8 @@ export default function AdModal() {
                   className="mb-6 text-3xl font-extrabold leading-tight text-white sm:text-4xl"
                   style={{ fontFamily: "var(--font-michroma)" }}
                 >
-                  Call For{" "}
-                  <span style={{ color: SECTION_BLUE }}>SPEAKERS</span>
+                  Hackathon is {" "}
+                  <span style={{ color: SECTION_BLUE }}>Live</span>
                  {/* of Innovators */}
                 </h2>
                 <div className="h-2" />
@@ -130,24 +135,29 @@ export default function AdModal() {
                   className="mb-4 text-base leading-relaxed text-white"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  We’re inviting passionate developers, designers, and tech enthusiasts to speak at 
+                 The Framework 1.0 Hackathon is a high-energy, 10-hour offline coding event designed to bring together passionate student developers, designers, and innovators. Participants will work in teams to build impactful solutions to real-world problems within a limited time frame.
+                 
+                 {/* This hackathon is completely free and open to all students, featuring a prize pool of 20K+. Participants will receive mentorship, collaborate with peers, and present their projects to experienced judges.
+                Whether you're a beginner or an experienced developer, the hackathon is the perfect place to learn, build, and showcase your skills. */}
                 {/* </p> */}
                 {/* {/* <p
                   className="mb-4 text-base leading-relaxed text-white"
                   style={{ fontFamily: "var(--font-inter)" }}
                 > */}
                   {" "}
-                  <span className="font-semibold text-white">
+                  {/* <span className="font-semibold text-white">
                     Framework 1.0, Flutter Kanpur’s. 
-                  </span>
+                  </span> */}
                   </p>
                   <p>
-                  If you have insights, experiences, or ideas to share across topics like Flutter, Backend, Cloud, AI/ML, or career growth, this is your chance to inspire and connect with a vibrant developer community. Submit your session proposal and be part of an event focused on learning, innovation, and collaboration
+
+                 This hackathon is completely free and open to all students, featuring a prize pool of 20K+. Participants will receive mentorship, collaborate with peers, and present their projects to experienced judges.
+                Whether you're a beginner or an experienced developer, the hackathon is the perfect place to learn, build, and showcase your skills.
                 </p>
 
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row justify-between">
                   <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSfDtrYkTZOBHuDNzwseNA4yBGP9O9LlHalp1lJtReXhABeMWA/viewform"
+                    href="https://framework.devfolio.co/overview"
                     target="_blank"
                     onClick={closeModal}
                     className="rounded-lg px-5 py-3 text-center text-sm font-semibold text-white transition-opacity hover:opacity-90"
@@ -156,7 +166,7 @@ export default function AdModal() {
                       backgroundColor: SECTION_BLUE,
                     }}
                   >
-                    Apply Now
+                    Register Now
                   </a>
                   <button
                     type="button"
