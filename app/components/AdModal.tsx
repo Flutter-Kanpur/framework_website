@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const STORAGE_KEY = "framework_ad_closed_at";
-const INTERVAL_MS = 1 * 60 * 1000; // 45 minutes
+const INTERVAL_MS = 60 * 60 * 1000; // 45 minutes
 const SECTION_BLUE = "#66B2FF";
 
 export default function AdModal() {
@@ -68,7 +68,7 @@ export default function AdModal() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative flex max-h-[90vh] flex-col overflow-hidden bg-black shadow-2xl outline outline-1 outline-white/5 rounded-[10px]">
-              {/* <button
+              <button
                 type="button"
                 onClick={closeModal}
                 className="absolute right-3 top-3 z-20 rounded-full p-1.5 text-white/60 transition-colors hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-[#66B2FF]"
@@ -87,7 +87,7 @@ export default function AdModal() {
                     d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
-              </button> */}
+              </button>
 
 <div className="relative flex flex-1 flex-col overflow-y-auto p-8 sm:p-10">
 
@@ -135,7 +135,7 @@ export default function AdModal() {
                   className="mb-4 text-base leading-relaxed text-white"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                 The Framework 1.0 Hackathon is a high-energy, 10-hour offline coding event designed to bring together passionate student developers, designers, and innovators. Participants will work in teams to build impactful solutions to real-world problems within a limited time frame.
+                The Framework 1.0 Hackathon is a high-energy, 10-hour offline coding event designed to bring together passionate student developers, designers, and innovators. Participants will work in teams to build impactful solutions to real-world problems within a limited time frame.
                  
                  {/* This hackathon is completely free and open to all students, featuring a prize pool of 20K+. Participants will receive mentorship, collaborate with peers, and present their projects to experienced judges.
                 Whether you're a beginner or an experienced developer, the hackathon is the perfect place to learn, build, and showcase your skills. */}
@@ -149,13 +149,21 @@ export default function AdModal() {
                     Framework 1.0, Flutter Kanpur’s. 
                   </span> */}
                   </p>
-                  <p>
+                  {/* <p>
 
                  This hackathon is completely free and open to all students, featuring a prize pool of 20K+. Participants will receive mentorship, collaborate with peers, and present their projects to experienced judges.
                 Whether you're a beginner or an experienced developer, the hackathon is the perfect place to learn, build, and showcase your skills.
-                </p>
+                </p> */}
 
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row justify-between">
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row justify-end">
+                   {/* <button
+                    type="button"
+                    onClick={closeModal}
+                    className="rounded-lg border border-white/30 bg-transparent px-5 py-3 text-sm font-medium text-white/90 transition-colors hover:bg-white/10"
+                    style={{ fontFamily: "var(--font-inter)" }}
+                  >
+                    Maybe later
+                  </button> */}
                   <a
                     href="https://framework.devfolio.co/overview"
                     target="_blank"
@@ -168,14 +176,14 @@ export default function AdModal() {
                   >
                     Register Now
                   </a>
-                  <button
+                  {/* <button
                     type="button"
                     onClick={closeModal}
                     className="rounded-lg border border-white/30 bg-transparent px-5 py-3 text-sm font-medium text-white/90 transition-colors hover:bg-white/10"
                     style={{ fontFamily: "var(--font-inter)" }}
                   >
                     Maybe later
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
