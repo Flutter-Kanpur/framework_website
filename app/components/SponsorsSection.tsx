@@ -60,17 +60,12 @@ hoverEffect:
 
 /* Marquee Sponsors for lower tier/community partners */
 const communityPartners = [
-  {
-        name: "AI Jalander",
-        logo: "/logo/jalandhar.png",
-        width: 32,
-        height: 32,
-      },
+  {name: "AI Jalander", logo: "/logo/jalandhar.png", width: 32, height: 32 },
       { name: "GDG Lucknow", logo: "/logo/gdgLucknow.jpeg", width: 32, height: 32 },
       { name: "FFSC India", logo: "/logo/FFSCIndia.png", width: 32, height: 32 },
-  { name: "Foss united Kanpur", logo: "/logo/foss.png" , width: 28, height: 28 },
-  { name: "AWS UG Kanpur", logo: "/logo/awskanpur.png", width: 28, height: 28 },
-  { name: "CNCF Kanpur", logo: "/logo/cncfkanpur.webp", width: 28, height: 28 },
+  { name: "Aitd", logo: "/logo/aitd.svg" , width: 28, height: 28 },
+  // { name: "AWS UG Kanpur", logo: "/logo/awskanpur.png", width: 28, height: 28 },
+  // { name: "CNCF Kanpur", logo: "/logo/cncfkanpur.webp", width: 28, height: 28 },
 ];
 
 export default function SponsorsSection() {
